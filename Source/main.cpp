@@ -23,7 +23,7 @@ int main(){
 	ficheiroAcidentes = lerFicheiroAcidentes();
 	ficheiroLocais = lerFicheiroLocais();
 
-	ProtecaoCivil protecaoCivil("postos","acidentes","locais");
+	ProtecaoCivil protecaoCivil(ficheiroPostos , ficheiroAcidentes , ficheiroLocais);
 	try{	// Ler info dos ficheiros e verificar que nao ha erros na sua abertura
 		protecaoCivil.openFiles();
 	}
