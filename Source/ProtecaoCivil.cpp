@@ -1014,9 +1014,11 @@ void ProtecaoCivil::ordenarPostosDistLocal(const std::string &nomeLocal){
 }
 
 void ProtecaoCivil::gravar() const{
-	// Escrever no ficheiro info. sobre os postos
 	std::ofstream ostr;
 
+	/////////////////////////////////
+	// Escrever Ficheiro de Postos //
+	/////////////////////////////////
 	ostr.open(ficheiroPostos);	// Abrir o ficheiro em modo de escrita
 
 	// Veficar se não houve erro ao abrir o ficheiro
@@ -1035,7 +1037,9 @@ void ProtecaoCivil::gravar() const{
 
 
 
-	// Escrever no ficheiro info. sobre os acidentes
+	////////////////////////////////////
+	// Escrever Ficheiro de Acidentes //
+	////////////////////////////////////
 	ostr.open(ficheiroAcidentes);	// Abrir o ficheiro em modo de escrita
 
 	// Verificar se não houve erro abrir o ficheiro
@@ -1051,6 +1055,61 @@ void ProtecaoCivil::gravar() const{
 
 	// Fechar a stream
 	ostr.close();
+
+
+
+	/*
+
+	///////////////////////////////////
+	// Escrever Ficheiro de Oficinas //
+	///////////////////////////////////
+	ostr.open(ficheiroOficinas);	// Abrir o ficheiro em modo de escrita
+
+	// Verificar se não houve erro abrir o ficheiro
+	if(!ostr.is_open())
+		throw LocalidadeInexistente("Falha ao abrir o ficheiro \"" + ficheiroOficinas + "\" ao guardar o estado atual das Oficinas.");
+
+	// Escrever no ficheiro a info. de todas as oficinas
+	// TODO
+
+	// Fechar a stream
+	ostr.close();
+
+
+
+	///////////////////////////////////
+	// Escrever Ficheiro de Veiculos //
+	///////////////////////////////////
+	ostr.open(ficheiroVeiculos);	// Abrir o ficheiro em modo de escrita
+
+	// Verificar se não houve erro abrir o ficheiro
+	if(!ostr.is_open())
+		throw LocalidadeInexistente("Falha ao abrir o ficheiro \"" + ficheiroVeiculos + "\" ao guardar o estado atual dos Veiculos.");
+
+	// Escrever no ficheiro a info. de todos os veiculos
+	// TODO
+
+	// Fechar a stream
+	ostr.close();
+
+
+
+	/////////////////////////////////////
+	// Escrever Ficheiro de Condutores //
+	/////////////////////////////////////
+	ostr.open(ficheiroCondutores);	// Abrir o ficheiro em modo de escrita
+
+	// Verificar se não houve erro abrir o ficheiro
+	if(!ostr.is_open())
+		throw LocalidadeInexistente("Falha ao abrir o ficheiro \"" + ficheiroCondutores + "\" ao guardar o estado atual daos Condutores.");
+
+	// Escrever no ficheiro a info. de todos os condutores
+	// TODO
+
+	// Fechar a stream
+	ostr.close();
+
+	*/
 }
 
 
