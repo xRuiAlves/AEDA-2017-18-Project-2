@@ -93,7 +93,7 @@ int getOption(int min, int max){
 }
 
 void declararOcorrencia(ProtecaoCivil &protecaoCivil){
-	std::string localidade, data, tipoCasa, tipoEstrada;
+	std::string localidade, data, tipoCasa, tipoEstrada, nomeMarca, nomeCondutor;
 	int tipoAcidente;
 	bool existenciaFeridos;
 	unsigned int numFeridos, numVeiculos, numBombeirosNecess, numAutotanquesNecess, areaChamas;
@@ -117,6 +117,19 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 			tipoEstrada = viacaoObterTipoEstrada();
 			numFeridos = viacaoObterNumFeridos();
 			numVeiculos = viacaoObterNumVeiculos();
+
+			// Ler Info. sobre Veiculos e Condutores (2a parte do Trabalho)
+			for (unsigned int i=0 ; i<numVeiculos ; i++){
+				std::cout << "\nVeiculo numero " << i+1 << ":" << std::endl;
+				nomeMarca = lerMarcaVeiculo();
+				nomeCondutor = lerNomeCondutor();
+
+
+				/*********************  TODO  ********************/
+				/*** Interpretar informacao lida do utilizador ***/
+				/*************************************************/
+			}
+
 			acidente = new AcidenteViacao(data,local,protecaoCivil.getMaxNumOcorrencia()+1,tipoEstrada,numFeridos,numVeiculos);
 			break;
 		case 3:		// Incendios Florestais
@@ -909,7 +922,7 @@ std::string lerFicheiroOficinas(){
 
 std::string lerMarcaVeiculo(){
 	std::string marcaVeiculo;
-	std::cout << "\nIndique o nome da marca do veiculo: ";
+	std::cout << "Indique o nome da marca do veiculo: ";
 	getline(std::cin, marcaVeiculo);
 
 	return marcaVeiculo;
@@ -917,7 +930,7 @@ std::string lerMarcaVeiculo(){
 
 std::string lerNomeCondutor(){
 	std::string nomeCondutor;
-	std::cout << "\nIndique o nome do condutor: ";
+	std::cout << "Indique o nome do condutor: ";
 	getline(std::cin, nomeCondutor);
 
 	return nomeCondutor;
