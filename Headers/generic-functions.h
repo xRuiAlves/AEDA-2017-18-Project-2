@@ -201,6 +201,36 @@ std::string lerFicheiroLocais();
  */
 void pause();
 
+/**
+ * @brief Lê do utilizador um ficheiro de veículos
+ * @return Retorna o ficheiro de veículos lido do utilizador
+ */
+std::string lerFicheiroVeiculos();
+
+/**
+ * @brief Lê do utilizador um ficheiro de condutores
+ * @return Retorna o ficheiro de condutores lido do utilizador
+ */
+std::string lerFicheiroCondutores();
+
+/**
+ * @brief Lê do utilizador um ficheiro de oficinas
+ * @return Retorna o ficheiro de oficinas lido do utilizador
+ */
+std::string lerFicheiroOficinas();
+
+/**
+ * @brief Lê do utilizador o nome da marca de um veículo
+ * @return Retorna o nome da marca de um veículo lido do utilizador
+ */
+std::string lerMarcaVeiculo();
+
+/**
+ * @brief Lê do utilizador o nome de um condutor
+ * @return Retorna o nome de um condutor lido do utilizador
+ */
+std::string lerNomeCondutor();
+
 
 
 #endif /* GENERIC_FUNCTIONS_H_ */

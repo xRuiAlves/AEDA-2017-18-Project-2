@@ -879,3 +879,43 @@ std::string lerFicheiroLocais(){
 
 	return ficheiroLocais;
 }
+
+std::string lerFicheiroVeiculos(){
+	std::string ficheiroVeiculos;
+	std::cout << "\nIndique o nome do ficheiro de veiculos: ";
+	getline(std::cin, ficheiroVeiculos);
+
+	return ficheiroVeiculos;
+}
+
+std::string lerFicheiroCondutores(){
+	std::string ficheiroCondutores;
+	std::cout << "\nIndique o nome do ficheiro de condutores: ";
+	getline(std::cin, ficheiroCondutores);
+
+	return ficheiroCondutores;
+}
+
+std::string lerFicheiroOficinas(){
+	std::string ficheiroOficinas;
+	std::cout << "\nIndique o nome do ficheiro de oficinas: ";
+	getline(std::cin, ficheiroOficinas);
+
+	return ficheiroOficinas;
+}
+
+std::string lerMarcaVeiculo(){
+	std::string marcaVeiculo;
+	std::cout << "\nIndique o nome da marca do veiculo: ";
+	getline(std::cin, marcaVeiculo);
+
+	return marcaVeiculo;
+}
+
+std::string lerNomeCondutor(){
+	std::string nomeCondutor;
+	std::cout << "\nIndique o nome do condutor: ";
+	getline(std::cin, nomeCondutor);
+
+	return nomeCondutor;
+}
