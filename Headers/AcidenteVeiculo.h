@@ -13,15 +13,15 @@ public:
 	AcidenteVeiculo(const Marca & marca , const Date & dataUltimoAcidente);
 	~AcidenteVeiculo();
 
-	Marca getMarca() const;												// TODO
-	unsigned int getNumAcidentes() const;								// TODO
-	Date getDataUltimoAcidente() const;									// TODO
+	Marca getMarca() const;												
+	unsigned int getNumAcidentes() const;								
+	Date getDataUltimoAcidente() const;									
 
-	void setNumAcidentes(unsigned int numAcidentes);					// TODO
-	void setDataUltimoAcidente(const Date & novaDataUltimoAcidente);	// TODO
+	void setNumAcidentes(unsigned int novoNumAcidentes);				
+	void setDataUltimoAcidente(const Date & novaDataUltimoAcidente);	
 
-	bool operator < (const AcidenteVeiculo & other);					// TODO
-	bool operator ==(const AcidenteVeiculo & other);					// TODO
+	bool operator < (const AcidenteVeiculo & other);					
+	bool operator ==(const AcidenteVeiculo & other);					
 };
 
 

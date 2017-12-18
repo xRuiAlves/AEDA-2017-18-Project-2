@@ -12,33 +12,33 @@ AcidenteVeiculo::~AcidenteVeiculo() {}
 
 
 Marca AcidenteVeiculo::getMarca() const{
-	// TODO
+	return marca;
 }
 
 unsigned int AcidenteVeiculo::getNumAcidentes() const{
-	// TODO
+	return numAcidentes;
 }
 
 Date AcidenteVeiculo::getDataUltimoAcidente() const{
-	// TODO
+	return dataUltimoAcidente;
 }
 
 
 
-void AcidenteVeiculo::setNumAcidentes(unsigned int numAcidentes){
-	// TODO
+void AcidenteVeiculo::setNumAcidentes(unsigned int novoNumAcidentes){
+	numAcidentes = novoNumAcidentes;
 }
 
 void AcidenteVeiculo::setDataUltimoAcidente(const Date & novaDataUltimoAcidente){
-	// TODO
+	dataUltimoAcidente = novaDataUltimoAcidente
 }
 
 
 
 bool AcidenteVeiculo::operator < (const AcidenteVeiculo & other){
-	// TODO
+	return ((this->numAcidentes < other.numAcidentes) || ( (this->numAcidentes ==  other.numAcidentes) && (this->dataUltimoAcidente < other.dataUltimoAcidente)));
 }
 
 bool AcidenteVeiculo::operator ==(const AcidenteVeiculo & other){
-	// TODO
+	return ((this->numAcidentes ==  other.numAcidentes) && (this->dataUltimoAcidente == other.dataUltimoAcidente));
 }

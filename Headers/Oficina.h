@@ -14,11 +14,11 @@ public:
 	Oficina(unsigned int id , unsigned int disponibilidade , const std::vector<Marca> & marcasRepresentadas);
 	~Oficina();
 
-	unsigned int getID() const;								// TODO
-	unsigned int getDisponibilidade() const;				// TODO
-	std::vector<Marca> getMarcasRepresentadas() const;		// TODO
+	unsigned int getID() const;								
+	unsigned int getDisponibilidade() const;				
+	std::vector<Marca> getMarcasRepresentadas() const;		
 
-	void adicionarVeiculo();								// TODO
+	void adicionarVeiculo();								
 };
 
 

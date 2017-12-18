@@ -10,19 +10,19 @@ Oficina::~Oficina() {}
 
 
 unsigned int Oficina::getID() const{
-	// TODO
+	return id;
 }
 
 unsigned int Oficina::getDisponibilidade() const{
-	// TODO
+	return disponibilidade;
 }
 
 std::vector<Marca> Oficina::getMarcasRepresentadas() const{
-	// TODO
+	return marcasRepresentadas;
 }
 
 
 
 void Oficina::adicionarVeiculo(){
-	// TODO
+	disponibilidade++;
 }

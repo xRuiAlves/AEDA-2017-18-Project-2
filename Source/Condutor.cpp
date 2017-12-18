@@ -9,15 +9,15 @@ Condutor::~Condutor() {}
 
 
 std::string Condutor::getNome() const{
-	// TODO
+	return nome;
 }
 
 Date Condutor::getDataUltimoAcidente() const{
-	// TODO
+	return dataUltimoAcidente;
 }
 
 
 
 void Condutor::setDataUltimoAcidente(const Date & novaDataUltimoAcidente){
-	// TODO
+	dataUltimoAcidente = novaDataUltimoAcidente;
 }

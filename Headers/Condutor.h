@@ -13,10 +13,10 @@ public:
 	Condutor(const std::string & nome , const Date & dataUltimoAcidente);
 	~Condutor();
 
-	std::string getNome() const;										// TODO
-	Date getDataUltimoAcidente() const;									// TODO
+	std::string getNome() const;										
+	Date getDataUltimoAcidente() const;									
 
-	void setDataUltimoAcidente(const Date & novaDataUltimoAcidente);	// TODO
+	void setDataUltimoAcidente(const Date & novaDataUltimoAcidente);	
 };
 
 
