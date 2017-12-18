@@ -17,6 +17,37 @@
 #include "Local.h"
 #include "Erro.h"
 
+/********** Bibliotecas para parte 2 do projeto ***********/
+#include "Marca.h"
+#include "AcidenteVeiculo.h"
+#include "Condutor.h"
+#include "Oficina.h"
+#include <set>				// Red-Black Binary Search Tree
+#include <unordered_set>	// Hash Table
+#include <queue>			// Priority Queue ( MAX heap )
+/**********************************************************/
+
+
+/**************************** Hash table para Condutores ****************************/
+struct CondutorHash
+{
+	// Funcao de Dispersão
+	int operator() (const Condutor& condutor) const
+	{
+		return 0;	// TODO
+	}
+
+	// Operador de igualdade
+	bool operator() (const Condutor& condutor1, const Condutor& condutor2) const
+	{
+		return (condutor1.getNome() == condutor2.getNome());
+	}
+};
+
+typedef std::unordered_set<Condutor, CondutorHash, CondutorHash> HashTableCondutores;
+/************************************************************************************/
+
+
 /**
  * Proteção Civil que gere todos os acidentes e aciona os devidos meios de socorro
  */
@@ -28,6 +59,16 @@ private:
 	const std::string ficheiroPostos;				/**< Ficheiro de onde é lida informação sobre todos os posto da Proteção Civil				*/
 	const std::string ficheiroAcidentes;			/**< Ficheiro de onde é lida/escrita informações sobre todos os acidentes 					*/
 	const std::string ficheiroLocais;				/**< Ficheiro de onde é lida informação sobre todos os locais ao abrigo da Proteção Civil	*/
+
+	/****** Membros-Dados para a segunda parte do projeto ******/
+	std::set<AcidenteVeiculo> veiculosAcidentesViacao;	/**< Árvore Binária de pesquisa que contem informação sobre todos os veículos envolvidos em Acidentes de Viação					*/
+	std::priority_queue<Oficina> oficinas;				/**< Fila de Prioridade quem contém todas as oficinas responsáveis pela reparação de veículos envolvidos em Acidentes de Viação	*/
+	HashTableCondutores condutoresAcidentesViacao;		/**< Tabela de Dispersão que contem todos os condutores identificados em Acidentes de Viacao									*/
+	const std::string ficheiroOficinas;					/**< Ficheiro de onde é lida informação sobre oficinas de reparação de Veículos				*/
+	const std::string ficheiroVeiculos;					/**< Ficheiro de onde é lida informação sobre veículos envolvidos em Acidentes de Viação	*/
+	const std::string ficheiroCondutores;				/**< Ficheiro de onde é lida informação sobre condutores envolvidos em Acidentes de Viação	*/
+	/***********************************************************/
+
 
 	/**
 	 * @brief Permite gravar toda a informação sobre postos e acidetes atuais no ficheiro de acidentes
@@ -47,6 +88,7 @@ private:
 	 * @return Retorna o valor da distância entre os locais com nome 'nomeLocal1' e 'nomeLocal2', ou -1 em caso de insucesso (se não encontrar algum dos locais
 	 */
 	double getDistLocais(const std::string &nomeLocal1, const std::string &nomeLocal2);
+
 public:
 	/**
 	 * @brief Construtor da ckasse ProtecaoCivil
@@ -201,6 +243,8 @@ public:
 	 * @param atribuicao - Atribuicao em questão
 	 */
 	void retornarAtribuicao(const Atribuicao & atribuicao);
+
+
 };
 
 #endif /* PROTECAOCIVIL_H_ */
