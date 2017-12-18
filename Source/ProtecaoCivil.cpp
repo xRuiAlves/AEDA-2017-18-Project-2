@@ -1,7 +1,12 @@
 #include "ProtecaoCivil.h"
 
-ProtecaoCivil::ProtecaoCivil(const std::string &ficheiroPostos, const std::string &ficheiroAcidentes, const std::string &ficheiroLocais)
-	: ficheiroPostos(ficheiroPostos) , ficheiroAcidentes(ficheiroAcidentes) , ficheiroLocais(ficheiroLocais) {}
+ProtecaoCivil::ProtecaoCivil(const std::string &ficheiroPostos, const std::string &ficheiroAcidentes, const std::string &ficheiroLocais, const std::string &ficheiroOficinas, const std::string &ficheiroVeiculos, const std::string &ficheiroCondutores)
+	: ficheiroPostos(ficheiroPostos) ,
+	  ficheiroAcidentes(ficheiroAcidentes) ,
+	  ficheiroLocais(ficheiroLocais) ,
+	  ficheiroOficinas(ficheiroOficinas) ,
+	  ficheiroVeiculos(ficheiroVeiculos) ,
+	  ficheiroCondutores(ficheiroCondutores) {}
 
 void ProtecaoCivil::openFiles(){
 	std::ifstream istr;
@@ -13,7 +18,7 @@ void ProtecaoCivil::openFiles(){
 	istr.open(ficheiroLocais);
 
 	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
-		throw FicheiroNaoEncontrado("Falha ao abrir o ficheiro \"" + ficheiroLocais + "\" no construtor de ProtecaoCivil.");
+		throw FicheiroNaoEncontrado("\nFalha ao abrir o ficheiro \"" + ficheiroLocais + "\" no construtor de ProtecaoCivil.\n");
 
 	// Preencher o vetor de locais com o conteudo do ficheiro
 	std::string line, nomeLocal;
@@ -30,7 +35,7 @@ void ProtecaoCivil::openFiles(){
 		x_coord = std::stoi(line.substr(0,dashIndex));
 		line.erase(0,dashIndex+1);
 
-		// obter a coordenada Ỹ do local
+		// obter a coordenada Y do local
 		dashIndex = line.find_first_of('/');
 		y_coord = std::stoi(line.substr(0,dashIndex));
 
@@ -39,6 +44,8 @@ void ProtecaoCivil::openFiles(){
 	}
 	istr.close();	// Fechar a stream
 
+
+
 	////////////////////////////
 	// Ler ficheiro de postos //
 	////////////////////////////
@@ -46,7 +53,7 @@ void ProtecaoCivil::openFiles(){
 	istr.open(ficheiroPostos);
 
 	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
-		throw FicheiroNaoEncontrado("Falha ao abrir o ficheiro \"" + ficheiroPostos + "\" no construtor de ProtecaoCivil.");
+		throw FicheiroNaoEncontrado("\nFalha ao abrir o ficheiro \"" + ficheiroPostos + "\" no construtor de ProtecaoCivil.\n");
 
 	// Preencher o vetor de postos com o conteudo do ficheiro
 	std::string tipoPosto, tipoVeiculo;
@@ -110,6 +117,8 @@ void ProtecaoCivil::openFiles(){
 	}
 	istr.close();
 
+
+
 	///////////////////////////////
 	// Ler Ficheiro de Acidentes //
 	///////////////////////////////
@@ -117,7 +126,7 @@ void ProtecaoCivil::openFiles(){
 	istr.open(ficheiroAcidentes);
 
 	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
-		throw FicheiroNaoEncontrado("Falha ao abrir o ficheiro \"" + ficheiroAcidentes + "\" no construtor de ProtecaoCivil.");
+		throw FicheiroNaoEncontrado("\nFalha ao abrir o ficheiro \"" + ficheiroAcidentes + "\" no construtor de ProtecaoCivil.\n");
 
 	// Preencher o vetor de Acidentes com o conteúdo do ficheiro
 	std::string data, tipoAcidente, tipoIncendio, tipoCasa, tipoEstrada, atribuicao, tipoVeiculos;
@@ -257,6 +266,113 @@ void ProtecaoCivil::openFiles(){
 
 	// Fechar a stream
 	istr.close();
+
+
+
+	//////////////////////////////
+	// Ler Ficheiro de Oficinas //
+	//////////////////////////////
+
+	istr.open(ficheiroOficinas);
+
+	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
+		throw FicheiroNaoEncontrado("\nFalha ao abrir o ficheiro \"" + ficheiroOficinas + "\" no construtor de ProtecaoCivil.\n");
+
+	std::string nomeMarca;
+	unsigned int disponibilidade , numMarcas;
+	std::vector<Marca> marcasRepresentadas;
+
+	while(getline(istr,line)){
+		// obter num. de ID da oficina
+		dashIndex = line.find_first_of('/');
+		id = std::stoi(line.substr(0,dashIndex));
+		line.erase(0,dashIndex+1);
+
+		// obter a disponibilidade da oficina
+		dashIndex = line.find_first_of('/');
+		disponibilidade = std::stoi(line.substr(0,dashIndex));
+		line.erase(0,dashIndex+1);
+
+		// obter numero de marcas representadas pela oficina
+		dashIndex = line.find_first_of('/');
+		numMarcas = std::stoi(line.substr(0,dashIndex));
+		line.erase(0,dashIndex+1);
+
+		// obter todas as marcas representadas por esta oficina
+		marcasRepresentadas.clear();
+		for (unsigned int i=0 ; i<numMarcas ; i++){
+			getline(istr,nomeMarca);
+			nomeMarca.erase(0,1);	// Apagar carater \t do inicio do nome da Marca
+			marcasRepresentadas.push_back(Marca(nomeMarca));
+		}
+	}
+
+	// TODO COMPLETAR
+
+	// Fechar a stream
+	istr.close();
+
+
+
+	//////////////////////////////
+	// Ler Ficheiro de Veiculos //
+	//////////////////////////////
+
+	istr.open(ficheiroVeiculos);
+
+	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
+		throw FicheiroNaoEncontrado("\nFalha ao abrir o ficheiro \"" + ficheiroVeiculos + "\" no construtor de ProtecaoCivil.\n");
+
+	unsigned int numAcidentes;
+
+	while(getline(istr,line)){
+		// obter o nome da marca
+		dashIndex = line.find_first_of('/');
+		nomeMarca = line.substr(0,dashIndex);
+		line.erase(0,dashIndex+1);
+
+		// obter o numero de acidentes
+		dashIndex = line.find_first_of('/');
+		numAcidentes = std::stoi(line.substr(0,dashIndex));
+		line.erase(0,dashIndex+1);
+
+		// obter a data
+		data = line;
+	}
+
+	// TODO COMPLETAR
+
+	// Fechar a stream
+	istr.close();
+
+
+
+	////////////////////////////////
+	// Ler Ficheiro de Condutores //
+	////////////////////////////////
+
+	istr.open(ficheiroCondutores);
+
+	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
+		throw FicheiroNaoEncontrado("\nFalha ao abrir o ficheiro \"" + ficheiroCondutores + "\" no construtor de ProtecaoCivil.\n");
+
+	std::string nomeCondutor;
+
+	while(getline(istr,line)){
+		// obter o nome do condutor
+		dashIndex = line.find_first_of('/');
+		nomeCondutor = line.substr(0,dashIndex);
+		line.erase(0,dashIndex+1);
+
+		// obter a data
+		data = line;
+	}
+
+	// TODO COMPLETAR
+
+	// Fechar a stream
+	istr.close();
+
 }
 
 ProtecaoCivil::~ProtecaoCivil() {

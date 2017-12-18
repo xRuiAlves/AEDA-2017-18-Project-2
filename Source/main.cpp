@@ -17,13 +17,16 @@ int main(){
 
 	printWelcomeMenu();
 
-	std::string ficheiroPostos, ficheiroAcidentes, ficheiroLocais;
+	std::string ficheiroPostos, ficheiroAcidentes, ficheiroLocais, ficheiroOficinas, ficheiroVeiculos, ficheiroCondutores;
 
 	ficheiroPostos = lerFicheiroPostos();
 	ficheiroAcidentes = lerFicheiroAcidentes();
 	ficheiroLocais = lerFicheiroLocais();
+	ficheiroOficinas = lerFicheiroOficinas();
+	ficheiroVeiculos = lerFicheiroVeiculos();
+	ficheiroCondutores = lerFicheiroCondutores();
 
-	ProtecaoCivil protecaoCivil(ficheiroPostos , ficheiroAcidentes , ficheiroLocais);
+	ProtecaoCivil protecaoCivil(ficheiroPostos , ficheiroAcidentes , ficheiroLocais, ficheiroOficinas, ficheiroVeiculos, ficheiroCondutores);
 	try{	// Ler info dos ficheiros e verificar que nao ha erros na sua abertura
 		protecaoCivil.openFiles();
 	}

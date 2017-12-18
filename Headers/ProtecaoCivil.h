@@ -29,22 +29,21 @@
 
 
 /**************************** Hash table para Condutores ****************************/
-struct CondutorHash
-{
-	// Funcao de Dispersão
-	int operator() (const Condutor& condutor) const
-	{
-		return 0;	// TODO
-	}
-
-	// Operador de igualdade
-	bool operator() (const Condutor& condutor1, const Condutor& condutor2) const
-	{
-		return (condutor1.getNome() == condutor2.getNome());
-	}
-};
-
-typedef std::unordered_set<Condutor, CondutorHash, CondutorHash> HashTableCondutores;
+//struct CondutorHash {
+//	// Funcao de Dispersão
+//	int operator() (const Condutor& condutor) const
+//	{
+//		return 0;	// TODO
+//	}
+//
+//	// Operador de igualdade
+//	bool operator() (const Condutor& condutor1, const Condutor& condutor2) const
+//	{
+//		return (condutor1.getNome() == condutor2.getNome());
+//	}
+//};
+//
+//typedef std::unordered_set<Condutor, CondutorHash, CondutorHash> HashTableCondutores;
 /************************************************************************************/
 
 
@@ -61,9 +60,9 @@ private:
 	const std::string ficheiroLocais;				/**< Ficheiro de onde é lida informação sobre todos os locais ao abrigo da Proteção Civil	*/
 
 	/****** Membros-Dados para a segunda parte do projeto ******/
-	std::set<AcidenteVeiculo> veiculosAcidentesViacao;	/**< Árvore Binária de pesquisa que contem informação sobre todos os veículos envolvidos em Acidentes de Viação					*/
-	std::priority_queue<Oficina> oficinas;				/**< Fila de Prioridade quem contém todas as oficinas responsáveis pela reparação de veículos envolvidos em Acidentes de Viação	*/
-	HashTableCondutores condutoresAcidentesViacao;		/**< Tabela de Dispersão que contem todos os condutores identificados em Acidentes de Viacao									*/
+//	std::set<AcidenteVeiculo> veiculosAcidentesViacao;	/**< Árvore Binária de pesquisa que contem informação sobre todos os veículos envolvidos em Acidentes de Viação					*/
+//	std::priority_queue<Oficina> oficinas;				/**< Fila de Prioridade quem contém todas as oficinas responsáveis pela reparação de veículos envolvidos em Acidentes de Viação	*/
+//	HashTableCondutores condutoresAcidentesViacao;		/**< Tabela de Dispersão que contem todos os condutores identificados em Acidentes de Viacao									*/
 	const std::string ficheiroOficinas;					/**< Ficheiro de onde é lida informação sobre oficinas de reparação de Veículos				*/
 	const std::string ficheiroVeiculos;					/**< Ficheiro de onde é lida informação sobre veículos envolvidos em Acidentes de Viação	*/
 	const std::string ficheiroCondutores;				/**< Ficheiro de onde é lida informação sobre condutores envolvidos em Acidentes de Viação	*/
@@ -71,7 +70,7 @@ private:
 
 
 	/**
-	 * @brief Permite gravar toda a informação sobre postos e acidetes atuais no ficheiro de acidentes
+	 * @brief Permite gravar toda a informação sobre veiculos, oficinas, condutores, postos e acidetes atuais nos respetivos ficheiros
 	 */
 	void gravar() const;
 
@@ -96,7 +95,7 @@ public:
 	 * @param ficheiroAcidentes - ficheiro de onde são lidos os acidentes
 	 * @param ficheiroLocais - ficheiro de onde são lidos os locais
 	 */
-	ProtecaoCivil(const std::string &ficheiroPostos, const std::string &ficheiroAcidentes, const std::string &ficheiroLocais);
+	ProtecaoCivil(const std::string &ficheiroPostos, const std::string &ficheiroAcidentes, const std::string &ficheiroLocais, const std::string &ficheiroOficinas, const std::string &ficheiroVeiculos, const std::string &ficheiroCondutores);
 
 	/**
 	 * @brief Destrutor da classe ProtecaoCivil
