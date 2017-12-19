@@ -45,5 +45,5 @@ bool AcidenteVeiculo::operator < (const AcidenteVeiculo & other){
 }
 
 bool AcidenteVeiculo::operator ==(const AcidenteVeiculo & other){
-	return ((this->numAcidentes ==  other.numAcidentes) && (this->dataUltimoAcidente == other.dataUltimoAcidente));
+	return (this->marca == other.marca);	// Dois AcidenteVeiculo são iguais quando possuem a mesma marca
 }
