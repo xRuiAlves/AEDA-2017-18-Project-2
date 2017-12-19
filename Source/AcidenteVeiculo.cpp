@@ -33,6 +33,10 @@ void AcidenteVeiculo::setDataUltimoAcidente(const Date & novaDataUltimoAcidente)
 	dataUltimoAcidente = novaDataUltimoAcidente;
 }
 
+void AcidenteVeiculo::printSimplifiedInfo(std::ostream & os) const{
+	os << marca.getNomeMarca() << '/' << numAcidentes << '/' << dataUltimoAcidente.getData();
+}
+
 
 
 bool AcidenteVeiculo::operator < (const AcidenteVeiculo & other){

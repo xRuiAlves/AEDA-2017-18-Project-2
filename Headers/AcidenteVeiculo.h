@@ -18,7 +18,8 @@ public:
 	Date getDataUltimoAcidente() const;									
 
 	void setNumAcidentes(unsigned int novoNumAcidentes);				
-	void setDataUltimoAcidente(const Date & novaDataUltimoAcidente);	
+	void setDataUltimoAcidente(const Date & novaDataUltimoAcidente);
+	void printSimplifiedInfo(std::ostream & os) const;
 
 	bool operator < (const AcidenteVeiculo & other);					
 	bool operator ==(const AcidenteVeiculo & other);					
