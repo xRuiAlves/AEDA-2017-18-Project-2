@@ -30,13 +30,18 @@ void AcidenteVeiculo::setNumAcidentes(unsigned int novoNumAcidentes){
 }
 
 void AcidenteVeiculo::setDataUltimoAcidente(const Date & novaDataUltimoAcidente){
-	dataUltimoAcidente = novaDataUltimoAcidente
+	dataUltimoAcidente = novaDataUltimoAcidente;
 }
 
 
 
 bool AcidenteVeiculo::operator < (const AcidenteVeiculo & other){
-	return ((this->numAcidentes < other.numAcidentes) || ( (this->numAcidentes ==  other.numAcidentes) && (this->dataUltimoAcidente < other.dataUltimoAcidente)));
+	if (this->numAcidentes == other.numAcidentes){
+		return (this->numAcidentes > other.numAcidentes);	// Ordem decrescente de numero de acidentes
+	}
+	else{	// Em caso de empate de numero de acidentes, ordem decrescente de data
+		return (this->dataUltimoAcidente > other.dataUltimoAcidente);
+	}
 }
 
 bool AcidenteVeiculo::operator ==(const AcidenteVeiculo & other){
