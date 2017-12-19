@@ -31,10 +31,23 @@
 
 /**************************** Hash table para Condutores ****************************/
 struct CondutorHash {
-	// Funcao de Dispersão
+	// Funcao de Dispersão (Using Bob Jenkins' "One-At-A-Time" Hash function for Strings)
 	int operator() (const Condutor& condutor) const
 	{
-		return 0;	// TODO
+		unsigned int hash_result = 0;
+		std::string nome = condutor.getNome();
+
+		for (unsigned int i=0 ; i<nome.size() ; i++){
+			hash_result += nome.at(i);
+			hash_result += hash_result << 10;
+			hash_result ^= hash_result >> 6;
+		}
+
+		hash_result += hash_result << 3;
+		hash_result ^= hash_result >> 11;
+		hash_result += hash_result << 15;
+
+		return hash_result;
 	}
 
 	// Operador de igualdade
