@@ -24,8 +24,8 @@ public:
 	void setDataUltimoAcidente(const Date & novaDataUltimoAcidente);
 	void printSimplifiedInfo(std::ostream & os) const;
 
-	bool operator < (const AcidenteVeiculo & other);					
-	bool operator ==(const AcidenteVeiculo & other);					
+	bool operator < (const AcidenteVeiculo & other) const;
+	bool operator ==(const AcidenteVeiculo & other) const;
 };
 
 

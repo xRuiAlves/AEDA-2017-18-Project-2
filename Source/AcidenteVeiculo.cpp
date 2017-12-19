@@ -37,15 +37,15 @@ void AcidenteVeiculo::printSimplifiedInfo(std::ostream & os) const{
 
 
 
-bool AcidenteVeiculo::operator < (const AcidenteVeiculo & other){
+bool AcidenteVeiculo::operator < (const AcidenteVeiculo & other) const{
 	if (this->numAcidentes == other.numAcidentes){
-		return (this->numAcidentes > other.numAcidentes);	// Ordem decrescente de numero de acidentes
+		return (this->dataUltimoAcidente > other.dataUltimoAcidente);	// Ordem decrescente de numero de acidentes
 	}
 	else{	// Em caso de empate de numero de acidentes, ordem decrescente de data
-		return (this->dataUltimoAcidente > other.dataUltimoAcidente);
+		return (this->numAcidentes > other.numAcidentes);
 	}
 }
 
-bool AcidenteVeiculo::operator ==(const AcidenteVeiculo & other){
+bool AcidenteVeiculo::operator ==(const AcidenteVeiculo & other) const{
 	return (this->marca == other.marca);	// Dois AcidenteVeiculo são iguais quando possuem a mesma marca
 }
