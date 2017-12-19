@@ -6,17 +6,24 @@ Date::Date(const std::string &date) {		// formato DD-MM-AAAA
 	ano = std::stoi(date.substr(6,4));
 }
 
+
+Date::~Date() {}
+
+
 unsigned int Date::getDia() const {
   return dia;
 }
+
 
 unsigned int Date::getMes() const{
   return mes;
 }
 
+
 unsigned int Date::getAno() const {
   return ano;
 }
+
 
 unsigned int Date::getCompleteData() const {
   unsigned int tempAno = ano * 10000, tempMes = mes * 100, tempData = 0;
@@ -24,6 +31,7 @@ unsigned int Date::getCompleteData() const {
   return tempData;
 
 }
+
 
 std::string Date::getData() const {
 	std::string dia, mes, ano;
@@ -53,11 +61,33 @@ std::string Date::getData() const {
 	return (dia + "-" + mes + "-" + ano);
 }
 
- bool Date::operator<(const Date &otherDate) const {
-   return this->getCompleteData() < otherDate.getCompleteData();
- }
 
-
-Date::~Date() {
-	// TODO Auto-generated destructor stub
+bool Date::operator<(const Date &otherDate) const {
+	return (this->getCompleteData() < otherDate.getCompleteData());
 }
+
+bool Date::operator>(const Date &otherDate) const{
+	return (this->getCompleteData() > otherDate.getCompleteData());
+}
+
+
+bool Date::operator==(const Date &otherDate) const{
+	return (this->getCompleteData() == otherDate.getCompleteData());
+}
+
+
+bool Date::operator<=(const Date &otherDate) const{
+	return (this->getCompleteData() <= otherDate.getCompleteData());
+}
+
+
+bool Date::operator>=(const Date &otherDate) const{
+	return (this->getCompleteData() >= otherDate.getCompleteData());
+}
+
+
+bool Date::operator!=(const Date &otherDate) const{
+	return (this->getCompleteData() != otherDate.getCompleteData());
+}
+
+

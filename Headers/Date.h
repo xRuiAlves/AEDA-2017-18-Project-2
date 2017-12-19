@@ -55,6 +55,41 @@ public:
 	bool operator<(const Date &otherDate) const;
 
 	/**
+	 * @brief Operador > para comparar datas.
+	 * @param otherDate - uma outra data para comparar à data em questão.
+	 * @return Retorna true caso a data em questão seja posterior à data a comparar, false caso contrário.
+	 */
+	bool operator>(const Date &otherDate) const;
+
+	/**
+	 * @brief Operador == para comparar datas.
+	 * @param otherDate - uma outra data para comparar à data em questão.
+	 * @return Retorna true caso a data em questão seja igual à data a comparar, false caso contrário.
+	 */
+	bool operator==(const Date &otherDate) const;
+
+	/**
+	 * @brief Operador <= para comparar datas.
+	 * @param otherDate - uma outra data para comparar à data em questão.
+	 * @return Retorna true caso a data em questão seja anterior ou igual à data a comparar, false caso contrário.
+	 */
+	bool operator<=(const Date &otherDate) const;
+
+	/**
+	 * @brief Operador >= para comparar datas.
+	 * @param otherDate - uma outra data para comparar à data em questão.
+	 * @return Retorna true caso a data em questão seja posterior ou igual à data a comparar, false caso contrário.
+	 */
+	bool operator>=(const Date &otherDate) const;
+
+	/**
+	 * @brief Operador != para comparar datas.
+	 * @param otherDate - uma outra data para comparar à data em questão.
+	 * @return Retorna true caso a data em questão seja diferente à data a comparar, false caso contrário.
+	 */
+	bool operator!=(const Date &otherDate) const;
+
+	/**
 	 * @brief Destrutor da classe Date.
 	 */
 	~Date();
