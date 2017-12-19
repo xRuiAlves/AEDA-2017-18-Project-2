@@ -305,9 +305,9 @@ void ProtecaoCivil::openFiles(){
 			nomeMarca.erase(0,1);	// Apagar carater \t do inicio do nome da Marca
 			marcasRepresentadas.push_back(Marca(nomeMarca));
 		}
-	}
 
-	// TODO COMPLETAR
+		oficinas.push(Oficina(id , disponibilidade , marcasRepresentadas));
+	}
 
 	// Fechar a stream
 	istr.close();
@@ -338,9 +338,9 @@ void ProtecaoCivil::openFiles(){
 
 		// obter a data
 		data = line;
-	}
 
-	// TODO COMPLETAR
+		veiculosAcidentesViacao.insert(AcidenteVeiculo( nomeMarca , numAcidentes , data ) );
+	}
 
 	// Fechar a stream
 	istr.close();
@@ -366,9 +366,9 @@ void ProtecaoCivil::openFiles(){
 
 		// obter a data
 		data = line;
-	}
 
-	// TODO COMPLETAR
+		condutoresAcidentesViacao.insert(Condutor(nomeCondutor , data));
+	}
 
 	// Fechar a stream
 	istr.close();
