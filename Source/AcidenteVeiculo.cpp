@@ -1,11 +1,9 @@
 #include "AcidenteVeiculo.h"
 
-AcidenteVeiculo::AcidenteVeiculo(const Marca & marca , const Date & dataUltimoAcidente) :
-	marca(marca) ,
-	dataUltimoAcidente(dataUltimoAcidente)
-{
-	numAcidentes = 1;	// Primeiro acidente com esta marca!
-}
+AcidenteVeiculo::AcidenteVeiculo(const std::string & nomeMarca , unsigned int numAcidentes , const Date & dataUltimoAcidente) :
+	marca(Marca(nomeMarca)) ,
+	numAcidentes(numAcidentes) ,
+	dataUltimoAcidente(dataUltimoAcidente) {}
 
 AcidenteVeiculo::~AcidenteVeiculo() {}
 

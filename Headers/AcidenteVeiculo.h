@@ -2,6 +2,7 @@
 #define ACIDENTEVEICULO_H_
 
 #include <iostream>
+#include <string>
 #include "Marca.h"
 #include "Date.h"
 
@@ -12,7 +13,7 @@ private:
 	unsigned int numAcidentes;
 	Date dataUltimoAcidente;
 public:
-	AcidenteVeiculo(const Marca & marca , const Date & dataUltimoAcidente);
+	AcidenteVeiculo(const std::string & nomeMarca , unsigned int numAcidentes , const Date & dataUltimoAcidente);
 	~AcidenteVeiculo();
 
 	Marca getMarca() const;												
