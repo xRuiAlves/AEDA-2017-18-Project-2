@@ -1013,7 +1013,7 @@ void ProtecaoCivil::ordenarPostosDistLocal(const std::string &nomeLocal){
 	}
 }
 
-void ProtecaoCivil::gravar() const{
+void ProtecaoCivil::gravar(){
 	std::ofstream ostr;
 
 	/////////////////////////////////
@@ -1058,8 +1058,6 @@ void ProtecaoCivil::gravar() const{
 
 
 
-	/*
-
 	///////////////////////////////////
 	// Escrever Ficheiro de Oficinas //
 	///////////////////////////////////
@@ -1070,7 +1068,15 @@ void ProtecaoCivil::gravar() const{
 		throw LocalidadeInexistente("Falha ao abrir o ficheiro \"" + ficheiroOficinas + "\" ao guardar o estado atual das Oficinas.");
 
 	// Escrever no ficheiro a info. de todas as oficinas
-	// TODO
+
+	while(!oficinas.empty()){
+		oficinas.top().printSimplifiedInfo(ostr);
+		oficinas.pop();
+
+		if (!oficinas.empty())
+			ostr << '\n';	// So muda de linha se nao for o ultimo elemento da queue.
+
+	}
 
 	// Fechar a stream
 	ostr.close();
@@ -1087,7 +1093,13 @@ void ProtecaoCivil::gravar() const{
 		throw LocalidadeInexistente("Falha ao abrir o ficheiro \"" + ficheiroVeiculos + "\" ao guardar o estado atual dos Veiculos.");
 
 	// Escrever no ficheiro a info. de todos os veiculos
-	// TODO
+	unsigned int i=0;
+	for (auto it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++,i++){
+		it->printSimplifiedInfo(ostr);
+
+		if(i != veiculosAcidentesViacao.size() - 1)	// So muda de linha se nao for o ultimo elemento do set.
+			ostr << '\n';
+	}
 
 	// Fechar a stream
 	ostr.close();
@@ -1104,12 +1116,16 @@ void ProtecaoCivil::gravar() const{
 		throw LocalidadeInexistente("Falha ao abrir o ficheiro \"" + ficheiroCondutores + "\" ao guardar o estado atual daos Condutores.");
 
 	// Escrever no ficheiro a info. de todos os condutores
-	// TODO
+	i=0;
+	for (auto it=condutoresAcidentesViacao.begin() ; it!=condutoresAcidentesViacao.end() ; it++,i++){
+		it->printSimplifiedInfo(ostr);
+
+		if(i != condutoresAcidentesViacao.size() - 1)	// So muda de linha se nao for o ultimo elemento do set.
+			ostr << '\n';
+	}
 
 	// Fechar a stream
 	ostr.close();
-
-	*/
 }
 
 

@@ -73,7 +73,7 @@ private:
 	/**
 	 * @brief Permite gravar toda a informação sobre veiculos, oficinas, condutores, postos e acidetes atuais nos respetivos ficheiros
 	 */
-	void gravar() const;
+	void gravar();
 
 	/**
 	 * @brief Permite obter o maior numero de identificação dos acidentes no vetor de acidentes
