@@ -9,9 +9,9 @@
 
 class Oficina {
 private:
-	const unsigned int id;
+	unsigned int id;
 	unsigned int disponibilidade;
-	const std::vector<Marca> marcasRepresentadas;
+	std::vector<Marca> marcasRepresentadas;
 public:
 	Oficina(unsigned int id , unsigned int disponibilidade , const std::vector<Marca> & marcasRepresentadas);
 	~Oficina();

@@ -6,7 +6,7 @@
 
 class Marca {
 private:
-	const std::string nomeMarca;
+	std::string nomeMarca;
 public:
 	Marca(const std::string & nomeMarca);
 	~Marca();
