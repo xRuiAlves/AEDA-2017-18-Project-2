@@ -1,6 +1,7 @@
 #ifndef CONDUTOR_H_
 #define CONDUTOR_H_
 
+#include <iostream>
 #include <string>
 #include "Date.h"
 

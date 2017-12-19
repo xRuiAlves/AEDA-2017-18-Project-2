@@ -1,8 +1,10 @@
 #ifndef ACIDENTEVEICULO_H_
 #define ACIDENTEVEICULO_H_
 
+#include <iostream>
 #include "Marca.h"
 #include "Date.h"
+
 
 class AcidenteVeiculo {
 private:
