@@ -27,6 +27,14 @@ void Oficina::adicionarVeiculo(){
 	disponibilidade++;
 }
 
+void Oficina::printSimplifiedInfo(std::ostream & os) const{
+	os << id << '/' << disponibilidade << '/' << marcasRepresentadas.size();
+
+	for (unsigned int i=0 ; i<marcasRepresentadas.size() ; i++){
+		os << "\n\t" << marcasRepresentadas.at(i).getNomeMarca();
+	}
+}
+
 
 
 bool Oficina::operator<(const Oficina & other) const{

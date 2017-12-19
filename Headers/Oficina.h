@@ -2,7 +2,9 @@
 #define OFICINA_H_
 
 #include <vector>
+#include <iostream>
 #include "Marca.h"
+
 
 
 class Oficina {
@@ -19,6 +21,7 @@ public:
 	std::vector<Marca> getMarcasRepresentadas() const;		
 
 	void adicionarVeiculo();
+	void printSimplifiedInfo(std::ostream & os) const;
 
 	bool operator<(const Oficina & other) const;
 };
