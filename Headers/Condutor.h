@@ -17,6 +17,7 @@ public:
 	Date getDataUltimoAcidente() const;									
 
 	void setDataUltimoAcidente(const Date & novaDataUltimoAcidente);	
+	void printSimplifiedInfo(std::ostream & os) const;
 };
 
 

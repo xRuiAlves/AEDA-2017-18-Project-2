@@ -21,3 +21,7 @@ Date Condutor::getDataUltimoAcidente() const{
 void Condutor::setDataUltimoAcidente(const Date & novaDataUltimoAcidente){
 	dataUltimoAcidente = novaDataUltimoAcidente;
 }
+
+void Condutor::printSimplifiedInfo(std::ostream & os) const{
+	os << nome << '/' << dataUltimoAcidente.getData();
+}
