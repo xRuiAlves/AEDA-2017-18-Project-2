@@ -18,7 +18,9 @@ public:
 	unsigned int getDisponibilidade() const;				
 	std::vector<Marca> getMarcasRepresentadas() const;		
 
-	void adicionarVeiculo();								
+	void adicionarVeiculo();
+
+	bool operator<(const Oficina & other) const;
 };
 
 

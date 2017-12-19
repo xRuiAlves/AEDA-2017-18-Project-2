@@ -26,3 +26,9 @@ std::vector<Marca> Oficina::getMarcasRepresentadas() const{
 void Oficina::adicionarVeiculo(){
 	disponibilidade++;
 }
+
+
+
+bool Oficina::operator<(const Oficina & other) const{
+	return (this->disponibilidade > other.disponibilidade);
+}
