@@ -23,6 +23,7 @@ public:
 	void setNumAcidentes(unsigned int novoNumAcidentes);				
 	void setDataUltimoAcidente(const Date & novaDataUltimoAcidente);
 	void printSimplifiedInfo(std::ostream & os) const;
+	void printCompleteInfo() const;
 
 	bool operator < (const AcidenteVeiculo & other) const;
 	bool operator ==(const AcidenteVeiculo & other) const;

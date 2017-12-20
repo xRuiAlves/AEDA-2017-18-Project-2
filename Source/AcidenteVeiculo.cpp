@@ -35,6 +35,12 @@ void AcidenteVeiculo::printSimplifiedInfo(std::ostream & os) const{
 	os << marca.getNomeMarca() << '/' << numAcidentes << '/' << dataUltimoAcidente.getData();
 }
 
+void AcidenteVeiculo::printCompleteInfo() const{
+	std::cout << "***  " << marca.getNomeMarca() << "  ***" << std::endl;
+	std::cout << "Numero de Acidentes: " << numAcidentes << std::endl;
+	std::cout << "Data do Ultimo Acidente: " << dataUltimoAcidente.getData() << std::endl;
+}
+
 
 
 bool AcidenteVeiculo::operator < (const AcidenteVeiculo & other) const{
