@@ -201,6 +201,12 @@ std::string lerFicheiroLocais();
  */
 void pause();
 
+
+
+/*****************************************************************************************************************/
+/***************************************        2a Parte do Projeto        ***************************************/
+/*****************************************************************************************************************/
+
 /**
  * @brief Lê do utilizador um ficheiro de veículos
  * @return Retorna o ficheiro de veículos lido do utilizador
@@ -231,6 +237,16 @@ std::string lerMarcaVeiculo();
  */
 std::string lerNomeCondutor();
 
+/**
+ * @param protecaoCivil - O objeto protecaoCivil com o qual se está a trabalhar.
+ * @brief Permite ao utilizador pesquisar sobre as várias ocorrências em aberto, utilizando diversos critérios de procura diferentes.
+ */
+void infoOficinas(ProtecaoCivil &protecaoCivil);
+
+/**
+ * @brief Imprime no ecrã o submenu de informações sobre oficinas
+ */
+void printInfoOficinasMenu();
 
 
 #endif /* GENERIC_FUNCTIONS_H_ */

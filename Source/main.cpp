@@ -44,7 +44,7 @@ int main(){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,5);
+			opt = getOption(1,6);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -59,8 +59,10 @@ int main(){
 			infoOcorrencia(protecaoCivil);
 		else if (opt == 4)
 			pesquisarPostos(protecaoCivil);
+		else if (opt == 5)
+			infoOficinas(protecaoCivil);
 		else
-			break;	// opt = 5, o utilizador quer sair
+			break;	// opt = 6, o utilizador quer sair
 	}
 
 	return 0;
@@ -490,7 +492,8 @@ void printMainMenu(){
 	std::cout << "2. Terminar Ocorrencia" << std::endl;
 	std::cout << "3. Informacoes sobre Ocorrencias" << std::endl;
 	std::cout << "4. Pesquisar Postos" << std::endl;
-	std::cout << "5. Sair" << std::endl << std::endl;
+	std::cout << "5. Informacoes sobre Oficinas" << std::endl;
+	std::cout << "6. Sair" << std::endl << std::endl;
 }
 
 void printPesquisarPostosMenu(){
@@ -894,6 +897,50 @@ std::string lerFicheiroLocais(){
 	getline(std::cin, ficheiroLocais);
 
 	return ficheiroLocais;
+}
+
+
+
+/*****************************************************************************************************************/
+/***************************************        2a Parte do Projeto        ***************************************/
+/*****************************************************************************************************************/
+
+void infoOficinas(ProtecaoCivil &protecaoCivil){
+	int opt;
+
+	// Perguntar ao utilizador o que quer fazer até estes querer voltar ao menu anterior
+	while(true){
+		printInfoOficinasMenu();
+
+		// Pedir opcao ao utilizador e verificar se nao houve erro de input
+		try{
+			opt = getOption(1,2);
+		}
+		catch(InputInvalido &e){
+			std::cout << "\n" << e.getInfo();
+			continue;	// Ir para o proximo loop , pedir nova opcao
+		}
+
+		std::cout << std::endl;
+
+		if (opt == 1){
+			// Imprimir todos as oficinas
+			protecaoCivil.printTodasOficinas();
+			pause();
+			break;
+		}
+		else
+			break;	// opt = 2, o utilizador quer voltar
+	}
+}
+
+void printInfoOficinasMenu(){
+	// Draw the header
+	printHeader("Informacoes sobre Oficinas");
+
+	// Draw the options
+	std::cout << "1. Pesquisar por todas as Oficinas" << std::endl;
+	std::cout << "2. Voltar" << std::endl << std::endl;
 }
 
 std::string lerFicheiroVeiculos(){
