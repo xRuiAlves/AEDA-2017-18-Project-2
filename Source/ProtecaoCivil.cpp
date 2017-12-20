@@ -1217,4 +1217,11 @@ void ProtecaoCivil::printTodosCondutores() const{
 	}
 }
 
+void ProtecaoCivil::printTodosVeiculos() const{
+	for (auto it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
+		it->printCompleteInfo();
+		std::cout << std::endl;
+	}
+}
+
 

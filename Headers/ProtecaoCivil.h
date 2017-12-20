@@ -272,6 +272,11 @@ public:
 	 * @brief Imprime no ecrã todos os condutores envolvidos em acidentes de viação
 	 */
 	void printTodosCondutores() const;
+
+	/**
+	 * @brief Imprime no ecrã informação sobre todas as marcas de veículos envolvidos em acidentes de viação
+	 */
+	void printTodosVeiculos() const;
 };
 
 #endif /* PROTECAOCIVIL_H_ */
