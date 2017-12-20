@@ -1210,4 +1210,11 @@ void ProtecaoCivil::printTodasOficinas() const{
 	}
 }
 
+void ProtecaoCivil::printTodosCondutores() const{
+	for (auto it=condutoresAcidentesViacao.begin() ; it!=condutoresAcidentesViacao.end() ; it++){
+		it->printCompleteInfo();
+		std::cout << std::endl;
+	}
+}
+
 

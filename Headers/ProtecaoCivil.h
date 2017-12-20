@@ -267,6 +267,11 @@ public:
 	 * @brief Imprime no ecrã todas as oficinas existentes
 	 */
 	void printTodasOficinas() const;
+
+	/**
+	 * @brief Imprime no ecrã todos os condutores envolvidos em acidentes de viação
+	 */
+	void printTodosCondutores() const;
 };
 
 #endif /* PROTECAOCIVIL_H_ */
