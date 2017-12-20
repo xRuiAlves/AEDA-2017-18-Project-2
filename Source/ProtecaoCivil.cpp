@@ -1195,5 +1195,19 @@ void ProtecaoCivil::retornarAtribuicao(const Atribuicao & atribuicao){
 
 
 
+/*****************************************************************************************************************/
+/***************************************        2a Parte do Projeto        ***************************************/
+/*****************************************************************************************************************/
+
+void ProtecaoCivil::printTodasOficinas() const{
+	// Fila de prioridade auxiliar para imprimir todas as oficinas
+	std::priority_queue<Oficina> oficinasToPrint = oficinas;
+
+	while(!oficinasToPrint.empty()){
+		oficinasToPrint.top().printCompleteInfo();
+		std::cout << std::endl;
+		oficinasToPrint.pop();
+	}
+}
 
 
