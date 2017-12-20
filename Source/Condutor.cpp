@@ -27,6 +27,6 @@ void Condutor::printSimplifiedInfo(std::ostream & os) const{
 }
 
 void Condutor::printCompleteInfo() const{
-	std::cout << "***  Condutor" << nome << "  ***" << std::endl;
+	std::cout << "***  Condutor " << nome << "  ***" << std::endl;
 	std::cout << "Data do Ultimo Acidente: " << dataUltimoAcidente.getData() << std::endl;
 }
