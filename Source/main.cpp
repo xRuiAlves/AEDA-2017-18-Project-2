@@ -1064,3 +1064,27 @@ std::string lerNomeCondutor(){
 
 	return nomeCondutor;
 }
+
+unsigned int obterIdOficina(){
+	int numId;
+	std::cout << "\nInsira o numero de identificacao da oficina: ";
+	std::cin >> numId;
+
+	// Verificar se foi introduzido um numero
+	if(std::cin.fail()){
+		// Limpar as flags de erro e limpar a stream, lançar a exceção
+		std::cin.clear();
+		std::cin.ignore(1000,'\n');
+		throw (InputInvalido("Input Invalido!"));
+	}
+
+	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
+	std::cin.ignore(1000,'\n');
+
+	// Verificar se o numero de identificacao introduzido nao foi absurdo
+	if (numId <= 0)
+		throw (InputInvalido("O numero de identificacao da oficina nao pode ser nulo nem negativo!"));
+	else
+		return ((unsigned int) numId);
+
+}

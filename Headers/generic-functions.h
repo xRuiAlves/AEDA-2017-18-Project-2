@@ -238,6 +238,12 @@ std::string lerMarcaVeiculo();
 std::string lerNomeCondutor();
 
 /**
+ * @brief Lê do utilizador o Número de Identificação de uma Oficina, lançando uma exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
+ * @return Retorna um número de identificação de uma oficina, se a leitura for bem sucedida
+ */
+unsigned int obterIdOficina();
+
+/**
  * @param protecaoCivil - O objeto protecaoCivil com o qual se está a trabalhar.
  * @brief Permite ao utilizador pesquisar sobre as várias oficinas disponíveis
  */
