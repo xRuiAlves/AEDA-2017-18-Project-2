@@ -1224,4 +1224,47 @@ void ProtecaoCivil::printTodosVeiculos() const{
 	}
 }
 
+void ProtecaoCivil::printOficina(unsigned int idOficina) const{
+	// Fila de prioridade auxiliar para pesquisar a oficina desejada
+	std::priority_queue<Oficina> oficinasToPrint = oficinas;
+
+	while(!oficinasToPrint.empty()){
+		if (oficinasToPrint.top().getID() == idOficina){	// Encontrada! Imprimir info. e retornar
+			oficinasToPrint.top().printCompleteInfo();
+			std::cout << std::endl;
+			return;
+		}
+		oficinasToPrint.pop();
+	}
+
+	// Nao foi encontrada a oficina com o numero de identificacao especificado no parametro da funcao...
+	std::cout << "Nao existe nenhuma oficina com o numero de identificacao introduzido!" << std::endl;
+}
+
+void ProtecaoCivil::printCondutor(const std::string & nomeCondutor) const{
+	for (auto it=condutoresAcidentesViacao.begin() ; it!=condutoresAcidentesViacao.end() ; it++){
+		if (it->getNome() == nomeCondutor){		// Encontrado! Imprimir info. e retornar
+			it->printCompleteInfo();
+			std::cout << std::endl;
+			return;
+		}
+	}
+
+	// Nao foi encontrado nenhum condutor com o nome especificado no parametro da funcao...
+	std::cout << "Nao existe nenhum condutor com o nome introduzido!" << std::endl;
+}
+
+void ProtecaoCivil::printVeiculo(const std::string & nomeMarca) const{
+	for (auto it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
+		if (it->getMarca().getNomeMarca() == nomeMarca){	// Encontrado! Imprimir info. e retornar
+			it->printCompleteInfo();
+			std::cout << std::endl;
+			return;
+		}
+	}
+
+	// Nao foi encontrado nenhuma marca de veiculos com o nome especificado no parametro da funcao...
+	std::cout << "Nao existe nenhuma marca de veiculos com o nome introduzido!" << std::endl;
+}
+
 

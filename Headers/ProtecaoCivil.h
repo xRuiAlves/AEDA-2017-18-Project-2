@@ -277,6 +277,24 @@ public:
 	 * @brief Imprime no ecrã informação sobre todas as marcas de veículos envolvidos em acidentes de viação
 	 */
 	void printTodosVeiculos() const;
+
+	/**
+	 * @brief Imprime no ecrã a informação relativa à oficina passada por parâmetro
+	 * @param idOficina - Número de Identificação da Oficina a imprimir
+	 */
+	void printOficina(unsigned int idOficina) const;
+
+	/**
+	 * @brief Imprime no ecrã a informação relativa ao condutor por parâmetro
+	 * @param nomeCondutor - Nome do Condutor a imprimir
+	 */
+	void printCondutor(const std::string & nomeCondutor) const;
+
+	/**
+	 * @brief Imprime no ecrã a informação relativa à marca do veículo passado por parâmetro
+	 * @param nomeMarca - Nome da marca de veículos a imprimir
+	 */
+	void printVeiculo(const std::string & nomeMarca) const;
 };
 
 #endif /* PROTECAOCIVIL_H_ */
