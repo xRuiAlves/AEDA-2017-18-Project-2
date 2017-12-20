@@ -244,7 +244,7 @@ std::string lerNomeCondutor();
 void infoOficinas(ProtecaoCivil &protecaoCivil);
 
 /**
- * @brief Imprime no ecrã o submenu de informações sobre oficinas
+ * @brief Imprime no ecrã o submenu de informações sobre todas as oficinas
  */
 void printInfoOficinasMenu();
 
@@ -255,9 +255,20 @@ void printInfoOficinasMenu();
 void infoCondutores(ProtecaoCivil &protecaoCivil);
 
 /**
- * @brief Imprime no ecrã o submenu de informações sobre condutores
+ * @brief Imprime no ecrã o submenu de informações sobre todos os condutores
  */
 void printInfoCondutoresMenu();
+
+/**
+ * @param protecaoCivil - O objeto protecaoCivil com o qual se está a trabalhar.
+ * @brief Permite ao utilizador pesquisar sobre as várias marcas dos veículos envolvidos em acidentes de viação
+ */
+void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil);
+
+/**
+ * @brief Imprime no ecrã o submenu de informações sobre todos veículos envolvidos
+ */
+void printInfoMarcasVeiculosMenu();
 
 
 #endif /* GENERIC_FUNCTIONS_H_ */

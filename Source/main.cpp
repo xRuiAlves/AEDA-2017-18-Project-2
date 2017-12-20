@@ -44,7 +44,7 @@ int main(){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,6);
+			opt = getOption(1,8);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -63,8 +63,10 @@ int main(){
 			infoOficinas(protecaoCivil);
 		else if (opt == 6)
 			infoCondutores(protecaoCivil);
+		else if (opt == 7)
+			infoMarcasVeiculos(protecaoCivil);
 		else
-			break;	// opt = 7, o utilizador quer sair
+			break;	// opt = 8, o utilizador quer sair
 	}
 
 	return 0;
@@ -496,7 +498,8 @@ void printMainMenu(){
 	std::cout << "4. Pesquisar Postos" << std::endl;
 	std::cout << "5. Informacoes sobre Oficinas" << std::endl;
 	std::cout << "6. Informacoes sobre Condutores" << std::endl;
-	std::cout << "7. Sair" << std::endl << std::endl;
+	std::cout << "7. Informacoes sobre Marcas de Veiculos" << std::endl;
+	std::cout << "8. Sair" << std::endl << std::endl;
 }
 
 void printPesquisarPostosMenu(){
@@ -966,6 +969,35 @@ void infoCondutores(ProtecaoCivil &protecaoCivil){
 	}
 }
 
+void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil){
+	int opt;
+
+	// Perguntar ao utilizador o que quer fazer até estes querer voltar ao menu anterior
+	while(true){
+		printInfoMarcasVeiculosMenu();
+
+		// Pedir opcao ao utilizador e verificar se nao houve erro de input
+		try{
+			opt = getOption(1,2);
+		}
+		catch(InputInvalido &e){
+			std::cout << "\n" << e.getInfo();
+			continue;	// Ir para o proximo loop , pedir nova opcao
+		}
+
+		std::cout << std::endl;
+
+		if (opt == 1){
+			// Imprimir todos os condutores
+			protecaoCivil.printTodosVeiculos();
+			pause();
+			break;
+		}
+		else
+			break;	// opt = 2, o utilizador quer voltar
+	}
+}
+
 void printInfoOficinasMenu(){
 	// Draw the header
 	printHeader("Informacoes sobre Oficinas");
@@ -981,6 +1013,15 @@ void printInfoCondutoresMenu(){
 
 	// Draw the options
 	std::cout << "1. Pesquisar por todos os Condutores" << std::endl;
+	std::cout << "2. Voltar" << std::endl << std::endl;
+}
+
+void printInfoMarcasVeiculosMenu(){
+	// Draw the header
+	printHeader("Informacoes sobre Marcas de Veiculos");
+
+	// Draw the options
+	std::cout << "1. Pesquisar por todas as Marcas de Veiculos" << std::endl;
 	std::cout << "2. Voltar" << std::endl << std::endl;
 }
 
