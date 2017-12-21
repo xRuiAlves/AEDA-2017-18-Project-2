@@ -920,7 +920,7 @@ void infoOficinas(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,2);
+			opt = getOption(1,3);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -935,8 +935,30 @@ void infoOficinas(ProtecaoCivil &protecaoCivil){
 			pause();
 			break;
 		}
+		else if (opt == 2){
+			// Pedir ao utilizador que insira o numero de identificacao da oficina e comunicar eventual erro
+			unsigned int oficinaID;
+			try{
+				oficinaID = obterIdOficina();
+			}
+			catch(InputInvalido &e){
+				std::cout << "\n\n" << e.getInfo();
+				std::cout << std::endl << std::endl;
+				pause();
+				break;
+			}
+
+			// Imprimir a oficina com o id pretendido
+			std::cout << std::endl;
+			protecaoCivil.printOficina(oficinaID);
+			std::cout << std::endl;
+
+			pause();
+			break;
+		}
 		else
-			break;	// opt = 2, o utilizador quer voltar
+			break;	// opt = 3, o utilizador quer voltar
+
 	}
 }
 
@@ -949,7 +971,7 @@ void infoCondutores(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,2);
+			opt = getOption(1,3);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -964,8 +986,20 @@ void infoCondutores(ProtecaoCivil &protecaoCivil){
 			pause();
 			break;
 		}
+		else if (opt == 2){
+			// Pedir ao utilizador que introduza o nome do condutor
+			std::string nomeCondutor = lerNomeCondutor();
+
+			// Imprimir info. sobre o condutor pretendido
+			std::cout << std::endl;
+			protecaoCivil.printCondutor(nomeCondutor);
+			std::cout << std::endl << std::endl;
+
+			pause();
+			break;
+		}
 		else
-			break;	// opt = 2, o utilizador quer voltar
+			break;	// opt = 3, o utilizador quer voltar
 	}
 }
 
@@ -978,7 +1012,7 @@ void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,2);
+			opt = getOption(1,3);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -993,8 +1027,20 @@ void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil){
 			pause();
 			break;
 		}
+		else if (opt == 2){
+			// Pedir ao utilizador que introduza o nome da marca de veiculos
+			std::string nomeMarca = lerMarcaVeiculo();
+
+			// Imprimir info. sobre o condutor pretendido
+			std::cout << std::endl;
+			protecaoCivil.printVeiculo(nomeMarca);
+			std::cout << std::endl << std::endl;
+
+			pause();
+			break;
+		}
 		else
-			break;	// opt = 2, o utilizador quer voltar
+			break;	// opt = 3, o utilizador quer voltar
 	}
 }
 
@@ -1004,7 +1050,8 @@ void printInfoOficinasMenu(){
 
 	// Draw the options
 	std::cout << "1. Pesquisar por todas as Oficinas" << std::endl;
-	std::cout << "2. Voltar" << std::endl << std::endl;
+	std::cout << "2. Pesquisar por Numero de Identificacao" << std::endl;
+	std::cout << "3. Voltar" << std::endl << std::endl;
 }
 
 void printInfoCondutoresMenu(){
@@ -1013,7 +1060,8 @@ void printInfoCondutoresMenu(){
 
 	// Draw the options
 	std::cout << "1. Pesquisar por todos os Condutores" << std::endl;
-	std::cout << "2. Voltar" << std::endl << std::endl;
+	std::cout << "2. Pesquisar por Nome" << std::endl;
+	std::cout << "3. Voltar" << std::endl << std::endl;
 }
 
 void printInfoMarcasVeiculosMenu(){
@@ -1022,7 +1070,8 @@ void printInfoMarcasVeiculosMenu(){
 
 	// Draw the options
 	std::cout << "1. Pesquisar por todas as Marcas de Veiculos" << std::endl;
-	std::cout << "2. Voltar" << std::endl << std::endl;
+	std::cout << "2. Pesquisar por Nome da Marca" << std::endl;
+	std::cout << "3. Voltar" << std::endl << std::endl;
 }
 
 std::string lerFicheiroVeiculos(){
