@@ -15,18 +15,20 @@ int main(){
 	///////////////////////////////////////////////////////////////////////
 	// Criar Proteção Civil e verificar se não houve erros na sua abertura
 
-	printWelcomeMenu();
-
-	std::string ficheiroPostos, ficheiroAcidentes, ficheiroLocais, ficheiroOficinas, ficheiroVeiculos, ficheiroCondutores;
-
-	ficheiroPostos = lerFicheiroPostos();
-	ficheiroAcidentes = lerFicheiroAcidentes();
-	ficheiroLocais = lerFicheiroLocais();
-	ficheiroOficinas = lerFicheiroOficinas();
-	ficheiroVeiculos = lerFicheiroVeiculos();
-	ficheiroCondutores = lerFicheiroCondutores();
-
-	ProtecaoCivil protecaoCivil(ficheiroPostos , ficheiroAcidentes , ficheiroLocais, ficheiroOficinas, ficheiroVeiculos, ficheiroCondutores);
+	/******************************************** TODO ALTERAR ISTO ********************************************/
+//	printWelcomeMenu();
+//
+//	std::string ficheiroPostos = lerFicheiroPostos();
+//	std::string ficheiroAcidentes = lerFicheiroAcidentes();
+//	std::string ficheiroLocais = lerFicheiroLocais();
+//	std::string ficheiroOficinas = lerFicheiroOficinas();
+//	std::string ficheiroVeiculos = lerFicheiroVeiculos();
+//	std::string ficheiroCondutores = lerFicheiroCondutores();
+	/******************************************** TODO ALTERAR ISTO ********************************************/
+	/***********************************************************************************************************/
+	ProtecaoCivil protecaoCivil("postos" , "acidentes" , "locais" , "oficinas" , "veiculos" , "condutores");
+	/***********************************************************************************************************/
+	/******************************************** TODO ALTERAR ISTO ********************************************/
 	try{	// Ler info dos ficheiros e verificar que nao ha erros na sua abertura
 		protecaoCivil.openFiles();
 	}
@@ -604,7 +606,7 @@ std::string lerData(){
 		break;
 	}
 
-	// Data válidade
+	// Data valida
 	return data;
 }
 
@@ -920,7 +922,7 @@ void infoOficinas(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,3);
+			opt = getOption(1,4);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -956,8 +958,15 @@ void infoOficinas(ProtecaoCivil &protecaoCivil){
 			pause();
 			break;
 		}
+		else if (opt == 3){
+			// Imprimir a oficina mais disponivel
+			protecaoCivil.printOficinaMaisDisponivel();
+			std::cout << std::endl;
+			pause();
+			break;
+		}
 		else
-			break;	// opt = 3, o utilizador quer voltar
+			break;	// opt = 4, o utilizador quer voltar
 
 	}
 }
@@ -1012,7 +1021,7 @@ void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,3);
+			opt = getOption(1,4);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -1039,8 +1048,15 @@ void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil){
 			pause();
 			break;
 		}
+		else if (opt == 3){
+			// Imprimir info. sobre a marca de veiculos envolvida em maior numero de acidentes
+			protecaoCivil.printMarcaMaisAcidentes();
+			std::cout << std::endl;
+			pause();
+			break;
+		}
 		else
-			break;	// opt = 3, o utilizador quer voltar
+			break;	// opt = 4, o utilizador quer voltar
 	}
 }
 
@@ -1051,7 +1067,8 @@ void printInfoOficinasMenu(){
 	// Draw the options
 	std::cout << "1. Pesquisar por todas as Oficinas" << std::endl;
 	std::cout << "2. Pesquisar por Numero de Identificacao" << std::endl;
-	std::cout << "3. Voltar" << std::endl << std::endl;
+	std::cout << "3. Pesquisar pela Oficina com maior disponibilidade" << std::endl;
+	std::cout << "4. Voltar" << std::endl << std::endl;
 }
 
 void printInfoCondutoresMenu(){
@@ -1071,7 +1088,8 @@ void printInfoMarcasVeiculosMenu(){
 	// Draw the options
 	std::cout << "1. Pesquisar por todas as Marcas de Veiculos" << std::endl;
 	std::cout << "2. Pesquisar por Nome da Marca" << std::endl;
-	std::cout << "3. Voltar" << std::endl << std::endl;
+	std::cout << "3. Pesquisar pela Marca de Veiculos envolvida em maior numero de Acidentes" << std::endl;
+	std::cout << "4. Voltar" << std::endl << std::endl;
 }
 
 std::string lerFicheiroVeiculos(){

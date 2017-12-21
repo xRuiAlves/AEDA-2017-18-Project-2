@@ -1267,4 +1267,17 @@ void ProtecaoCivil::printVeiculo(const std::string & nomeMarca) const{
 	std::cout << "Nao existe nenhuma marca de veiculos com o nome introduzido!" << std::endl;
 }
 
+void ProtecaoCivil::printOficinaMaisDisponivel() const{
+	if (oficinas.empty())
+		std::cout << "Nao existe nenhuma oficina de momento." << std::endl;
+	else
+		oficinas.top().printCompleteInfo();
+}
+
+void ProtecaoCivil::printMarcaMaisAcidentes() const{
+	if (veiculosAcidentesViacao.empty())
+		std::cout << "Nao existe nenhuma marca de veiculos registada de momento." << std::endl;
+	else
+		veiculosAcidentesViacao.begin()->printCompleteInfo();
+}
 

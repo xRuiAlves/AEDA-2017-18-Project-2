@@ -295,6 +295,16 @@ public:
 	 * @param nomeMarca - Nome da marca de veículos a imprimir
 	 */
 	void printVeiculo(const std::string & nomeMarca) const;
+
+	/**
+	 * @brief Imprime no ecrã a oficina com maior disponibilidade (topo da fila de prioridade)
+	 */
+	void printOficinaMaisDisponivel() const;
+
+	/**
+	 * @brief Imprime no ecrã a marca de veiculos envolvida no maior numero de acidentes (primeiro elemento)
+	 */
+	void printMarcaMaisAcidentes() const;
 };
 
 #endif /* PROTECAOCIVIL_H_ */
