@@ -312,6 +312,13 @@ public:
 	 * @param data2 - valor máximo até ao qual são impressos condutores
 	 */
 	void printCondutoresEntreDatas(const Date & data1 , const Date & data2) const;
+
+	/**
+	 * @brief Imprime no ecrã info de todas as marcas de veículos envolvidas em acidentes de viação entre as datas data1 e data2
+	 * @param data1 - valor minimo a partir do qual são impressas marcas de veículos
+	 * @param data2 - valor máximo até ao qual são impressas marcas de veículos
+	 */
+	void printVeiculosEntreDatas(const Date & data1 , const Date & data2) const;
 };
 
 #endif /* PROTECAOCIVIL_H_ */

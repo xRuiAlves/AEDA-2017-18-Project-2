@@ -1027,6 +1027,7 @@ void infoCondutores(ProtecaoCivil &protecaoCivil){
 			Date dataAntiga(dataDeHoje.getDia() , dataDeHoje.getMes() , dataDeHoje.getAno()-5);
 
 			// Imprimir info de todos os condutores envolvidos em acidentes nos ultimos 5 anos
+			std::cout << std::endl;
 			protecaoCivil.printCondutoresEntreDatas(dataAntiga , dataDeHoje);
 
 			pause();
@@ -1046,7 +1047,7 @@ void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,4);
+			opt = getOption(1,5);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -1080,8 +1081,47 @@ void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil){
 			pause();
 			break;
 		}
+		else if (opt == 4){
+			// Pedir ao utilizador que introduzar uma Data
+			std::string data;
+
+			try{
+				data = lerDataDeHoje();
+			}
+			catch(DataInvalida &e){
+				std::cout << "\n" << e.getInfo() << std::endl << std::endl;
+				pause();
+				break;
+			}
+
+			// Pedir ao utilizador para especificar o numero de anos
+			unsigned int numAnos;
+			try{
+				numAnos = obterNumAnos();
+			}
+			catch(InputInvalido &e){
+				std::cout << "\n\n" << e.getInfo();
+				std::cout << std::endl << std::endl;
+				pause();
+				break;
+			}
+
+
+			// Criar um objeto do tipo Date com a data de hoje
+			Date dataDeHoje(data);
+
+			// Criar um objeto com a data de há X anos atras
+			Date dataAntiga(dataDeHoje.getDia() , dataDeHoje.getMes() , dataDeHoje.getAno()-numAnos);
+
+			// Imprimir info de todas as marcas de veiculos envolvidas em acidentes nos ultimos  anos
+			std::cout << std::endl;
+			protecaoCivil.printVeiculosEntreDatas(dataAntiga , dataDeHoje);
+
+			pause();
+			break;
+		}
 		else
-			break;	// opt = 4, o utilizador quer voltar
+			break;	// opt = 5, o utilizador quer voltar
 	}
 }
 
@@ -1115,7 +1155,8 @@ void printInfoMarcasVeiculosMenu(){
 	std::cout << "1. Pesquisar por todas as Marcas de Veiculos" << std::endl;
 	std::cout << "2. Pesquisar por Nome da Marca" << std::endl;
 	std::cout << "3. Pesquisar pela Marca de Veiculos envolvida em maior numero de Acidentes" << std::endl;
-	std::cout << "4. Voltar" << std::endl << std::endl;
+	std::cout << "4. Pesquisar por Marcas Veiculos envolvidas em Acidentes nos ultimos X anos" << std::endl;
+	std::cout << "5. Voltar" << std::endl << std::endl;
 }
 
 std::string lerFicheiroVeiculos(){
@@ -1179,7 +1220,29 @@ unsigned int obterIdOficina(){
 		throw (InputInvalido("O numero de identificacao da oficina nao pode ser nulo nem negativo!"));
 	else
 		return ((unsigned int) numId);
+}
 
+unsigned int obterNumAnos(){
+	int numAnos;
+	std::cout << "\nInsira o numero de anos: ";
+	std::cin >> numAnos;
+
+	// Verificar se foi introduzido um numero
+	if(std::cin.fail()){
+		// Limpar as flags de erro e limpar a stream, lançar a exceção
+		std::cin.clear();
+		std::cin.ignore(1000,'\n');
+		throw (InputInvalido("Input Invalido!"));
+	}
+
+	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
+	std::cin.ignore(1000,'\n');
+
+	// Verificar se o numero de anos nao foi absurdo
+	if (numAnos <= 0)
+		throw (InputInvalido("O numero anos nao pode ser nulo nem negativo!"));
+	else
+		return ((unsigned int) numAnos);
 }
 
 std::string lerDataDeHoje(){

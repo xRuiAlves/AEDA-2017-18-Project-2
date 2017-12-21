@@ -244,6 +244,12 @@ std::string lerNomeCondutor();
 unsigned int obterIdOficina();
 
 /**
+ * @brief Lê do utilizador um Número de Anos, lançando uma exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
+ * @return Retorna um número de anos lido do utilizador, se a leitura for bem sucedida
+ */
+unsigned int obterNumAnos();
+
+/**
  * @param protecaoCivil - O objeto protecaoCivil com o qual se está a trabalhar.
  * @brief Permite ao utilizador pesquisar sobre as várias oficinas disponíveis
  */
