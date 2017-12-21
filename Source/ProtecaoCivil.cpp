@@ -1211,14 +1211,14 @@ void ProtecaoCivil::printTodasOficinas() const{
 }
 
 void ProtecaoCivil::printTodosCondutores() const{
-	for (auto it=condutoresAcidentesViacao.begin() ; it!=condutoresAcidentesViacao.end() ; it++){
+	for (HashTableCondutores::const_iterator it=condutoresAcidentesViacao.begin() ; it!=condutoresAcidentesViacao.end() ; it++){
 		it->printCompleteInfo();
 		std::cout << std::endl;
 	}
 }
 
 void ProtecaoCivil::printTodosVeiculos() const{
-	for (auto it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
+	for (std::set<AcidenteVeiculo>::const_iterator it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
 		it->printCompleteInfo();
 		std::cout << std::endl;
 	}
@@ -1242,7 +1242,7 @@ void ProtecaoCivil::printOficina(unsigned int idOficina) const{
 }
 
 void ProtecaoCivil::printCondutor(const std::string & nomeCondutor) const{
-	for (auto it=condutoresAcidentesViacao.begin() ; it!=condutoresAcidentesViacao.end() ; it++){
+	for (HashTableCondutores::const_iterator it=condutoresAcidentesViacao.begin() ; it!=condutoresAcidentesViacao.end() ; it++){
 		if (it->getNome() == nomeCondutor){		// Encontrado! Imprimir info. e retornar
 			it->printCompleteInfo();
 			std::cout << std::endl;
@@ -1255,7 +1255,7 @@ void ProtecaoCivil::printCondutor(const std::string & nomeCondutor) const{
 }
 
 void ProtecaoCivil::printVeiculo(const std::string & nomeMarca) const{
-	for (auto it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
+	for (std::set<AcidenteVeiculo>::const_iterator it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
 		if (it->getMarca().getNomeMarca() == nomeMarca){	// Encontrado! Imprimir info. e retornar
 			it->printCompleteInfo();
 			std::cout << std::endl;
@@ -1284,7 +1284,7 @@ void ProtecaoCivil::printMarcaMaisAcidentes() const{
 void ProtecaoCivil::printCondutoresEntreDatas(const Date & data1 , const Date & data2) const{
 	bool haPeloMenosUm = false;
 
-	for (auto it=condutoresAcidentesViacao.begin() ; it!=condutoresAcidentesViacao.end() ; it++){
+	for (HashTableCondutores::const_iterator it=condutoresAcidentesViacao.begin() ; it!=condutoresAcidentesViacao.end() ; it++){
 		if ((it->getDataUltimoAcidente() >= data1) && (it->getDataUltimoAcidente() <= data2)){	// Esta data enquadra-se nas condicoes de pesquisa!
 			it->printCompleteInfo();
 			std::cout << std::endl;
@@ -1300,7 +1300,7 @@ void ProtecaoCivil::printCondutoresEntreDatas(const Date & data1 , const Date & 
 void ProtecaoCivil::printVeiculosEntreDatas(const Date & data1 , const Date & data2) const{
 	bool haPeloMenosUm = false;
 
-	for (auto it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
+	for (std::set<AcidenteVeiculo>::const_iterator it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
 		if ((it->getDataUltimoAcidente() >= data1) && (it->getDataUltimoAcidente() <= data2)){	// Esta data enquadra-se nas condicoes de pesquisa!
 			it->printCompleteInfo();
 			std::cout << std::endl;
@@ -1318,7 +1318,7 @@ void ProtecaoCivil::addCondutor(const std::string & nomeCondutor , const Date & 
 	Condutor condutor(nomeCondutor , dataAcidente);
 
 	// Verificar se o condutor já existe
-	auto it = condutoresAcidentesViacao.find(condutor);
+	HashTableCondutores::iterator it = condutoresAcidentesViacao.find(condutor);
 
 	// Novo condutor ; Adiciona-lo à tabela de dispersão
 	if (it == condutoresAcidentesViacao.end()){
@@ -1333,4 +1333,68 @@ void ProtecaoCivil::addCondutor(const std::string & nomeCondutor , const Date & 
 		// Adicionar um novo registo, com o mesmo nome e com a nova data
 		condutoresAcidentesViacao.insert(condutor);
 	}
+}
+
+void ProtecaoCivil::addVeiculo(const std::string & nomeMarcaVeiculo , const Date & dataAcidente){
+	// Criar o Registo para Veículos desta Marca
+	AcidenteVeiculo av(nomeMarcaVeiculo , 1 , dataAcidente);
+
+	// Verificar se o Registo para Veículos desta Marca já existe
+	std::set<AcidenteVeiculo>::iterator it;
+	for (it = veiculosAcidentesViacao.begin() ; it != veiculosAcidentesViacao.end() ; it++){
+		if (it->getMarca() == nomeMarcaVeiculo)	// Encontrado! Existe!
+			break;
+	}
+
+	// Novo Registo para Veículos desta Marca ; Adiciona-lo à árvore binária
+	if (it == veiculosAcidentesViacao.end()){
+		veiculosAcidentesViacao.insert(av);
+	}
+
+	// O Registo para Veículos desta Marca já existe ; Atualiza-lo
+	else{
+		// Remove o registo antigo
+		AcidenteVeiculo registoParaAtualizar = (*it);
+		veiculosAcidentesViacao.erase(it);
+
+		// Atualizar o Registo e re-adiciona-lo, já atualizado
+		registoParaAtualizar.setNumAcidentes( registoParaAtualizar.getNumAcidentes() + 1);
+		registoParaAtualizar.setDataUltimoAcidente(dataAcidente);
+		veiculosAcidentesViacao.insert(registoParaAtualizar);
+	}
+
+	// Atribuir este veículo a uma oficina que represente veículos desta marca
+	std::vector<Oficina> oficinasTemp;	// Vetor para guardar oficinas retiradas da fila de prioridade, para mais tarde serem re-inseridas
+
+	while(!oficinas.empty()){
+		Oficina oficinaParaAnalisar = oficinas.top();
+		oficinas.pop();
+
+
+		// Verificar se esta oficina representa a marca do veículo em questão
+		if(oficinaParaAnalisar.representaMarca(nomeMarcaVeiculo)){
+			oficinaParaAnalisar.adicionarVeiculo();
+
+			// Re-colocar as oficinas retiradas da fila
+			for (unsigned int i=0 ; i<oficinasTemp.size() ; i++){
+				oficinas.push(oficinasTemp.at(i));
+			}
+
+			// Re-colocar a oficina alterada
+			oficinas.push(oficinaParaAnalisar);
+
+			std::cout << "\nO veiculo foi reencaminhado para a oficina no. " << oficinaParaAnalisar.getID() << ".\n";
+			return;
+		}
+
+
+		oficinasTemp.push_back(oficinaParaAnalisar);
+	}
+
+	// Nao foi encontrada nenhuma oficina que representasse a marca em questão ; Re-colocar as oficinas retiradas da fila e informar o utilizador
+	for (unsigned int i=0 ; i<oficinasTemp.size() ; i++){
+		oficinas.push(oficinasTemp.at(i));
+	}
+
+	std::cout << "\nNao existe nenhuma oficina que represente a marca do veiculo em questao, pelo que este nao foi encaminhado para nenhuma oficina.\n";
 }

@@ -314,6 +314,13 @@ public:
 	void addCondutor(const std::string & nomeCondutor , const Date & dataAcidente);
 
 	/**
+	 * @brief Adiciona uma marca de veículos à árvore binária de acidenteVeiculos , ou atualiza a info. da marca de veículos se esta já existir
+	 * @param nomeMarcaVeiculo - Nome da Marca de Veículos
+	 * @param dataAcidente - Data em que ocorreu o acidente
+	 */
+	void addVeiculo(const std::string & nomeMarcaVeiculo , const Date & dataAcidente);
+
+	/**
 	 * @brief Imprime no ecrã info de todos os condutores envolvidos em acidentes de viação entre as datas data1 e data2
 	 * @param data1 - valor minimo a partir do qual são impressos condutores
 	 * @param data2 - valor máximo até ao qual são impressos condutores
