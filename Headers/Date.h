@@ -10,6 +10,12 @@ private:
 	unsigned int dia;	/**< Dia referente à data. */
 	unsigned int mes;	/**< Mês referente à data. */
 	unsigned int ano;	/**< Ano referente à data. */
+
+	/**
+	 * @brief Permite obter a data num formato útil para comparar datas.
+	 * @return Retorna a data em formato numérico AAAAMMDD, útil para comparar datas diretamente.
+	 */
+	unsigned int getComparableValue() const;
 public:
 	/**
 	 * @brief Construtor da classe Date.
@@ -34,12 +40,6 @@ public:
 	 * @return Retorna o ano da data.
 	 */
 	unsigned int getAno() const;
-
-	/**
-	 * @brief Permite obter a data num formato útil para comparar datas.
-	 * @return Retorna a data em formato numérico AAAAMMDD, útil para comparar datas diretamente.
-	 */
-	unsigned int getCompleteData() const;
 
 	/**
 	 * @brief Permite obter a data num formato agradável para o utilizador.

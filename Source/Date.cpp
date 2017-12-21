@@ -25,7 +25,7 @@ unsigned int Date::getAno() const {
 }
 
 
-unsigned int Date::getCompleteData() const {
+unsigned int Date::getComparableValue() const {
   unsigned int tempAno = ano * 10000, tempMes = mes * 100, tempData = 0;
   tempData = tempAno + tempMes + dia;
   return tempData;
@@ -63,31 +63,31 @@ std::string Date::getData() const {
 
 
 bool Date::operator<(const Date &otherDate) const {
-	return (this->getCompleteData() < otherDate.getCompleteData());
+	return (this->getComparableValue() < otherDate.getComparableValue());
 }
 
 bool Date::operator>(const Date &otherDate) const{
-	return (this->getCompleteData() > otherDate.getCompleteData());
+	return (this->getComparableValue() > otherDate.getComparableValue());
 }
 
 
 bool Date::operator==(const Date &otherDate) const{
-	return (this->getCompleteData() == otherDate.getCompleteData());
+	return (this->getComparableValue() == otherDate.getComparableValue());
 }
 
 
 bool Date::operator<=(const Date &otherDate) const{
-	return (this->getCompleteData() <= otherDate.getCompleteData());
+	return (this->getComparableValue() <= otherDate.getComparableValue());
 }
 
 
 bool Date::operator>=(const Date &otherDate) const{
-	return (this->getCompleteData() >= otherDate.getCompleteData());
+	return (this->getComparableValue() >= otherDate.getComparableValue());
 }
 
 
 bool Date::operator!=(const Date &otherDate) const{
-	return (this->getCompleteData() != otherDate.getCompleteData());
+	return (this->getComparableValue() != otherDate.getComparableValue());
 }
 
 
