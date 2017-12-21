@@ -1313,3 +1313,24 @@ void ProtecaoCivil::printVeiculosEntreDatas(const Date & data1 , const Date & da
 		std::cout << "Nao foi encontrado nenhuma marca de veiculos com as condicoes especificadas\n" << std::endl;
 }
 
+void ProtecaoCivil::addCondutor(const std::string & nomeCondutor , const Date & dataAcidente){
+	// Criar o Condutor
+	Condutor condutor(nomeCondutor , dataAcidente);
+
+	// Verificar se o condutor já existe
+	auto it = condutoresAcidentesViacao.find(condutor);
+
+	// Novo condutor ; Adiciona-lo à tabela de dispersão
+	if (it == condutoresAcidentesViacao.end()){
+		condutoresAcidentesViacao.insert(condutor);
+	}
+
+	// O condutor já existe! Atualiza-lo
+	else{
+		// Remover o registo antigo
+		condutoresAcidentesViacao.erase(it);
+
+		// Adicionar um novo registo, com o mesmo nome e com a nova data
+		condutoresAcidentesViacao.insert(condutor);
+	}
+}

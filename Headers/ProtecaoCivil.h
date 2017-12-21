@@ -307,6 +307,13 @@ public:
 	void printMarcaMaisAcidentes() const;
 
 	/**
+	 * @brief Adiciona um condutor à tabela de dispersão de condutor , ou atualiza a info. do condutor se esta já existir
+	 * @param nomeCondutor - Nome do Condutor
+	 * @param dataAcidente - Data em que ocorreu o acidente
+	 */
+	void addCondutor(const std::string & nomeCondutor , const Date & dataAcidente);
+
+	/**
 	 * @brief Imprime no ecrã info de todos os condutores envolvidos em acidentes de viação entre as datas data1 e data2
 	 * @param data1 - valor minimo a partir do qual são impressos condutores
 	 * @param data2 - valor máximo até ao qual são impressos condutores

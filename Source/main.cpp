@@ -132,6 +132,8 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 				nomeMarca = lerMarcaVeiculo();
 				nomeCondutor = lerNomeCondutor();
 
+				// Adicionar o condutor à base de dados
+				protecaoCivil.addCondutor(nomeCondutor , data);
 
 				/*********************  TODO  ********************/
 				/*** Interpretar informacao lida do utilizador ***/
