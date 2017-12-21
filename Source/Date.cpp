@@ -7,6 +7,9 @@ Date::Date(const std::string &date) {		// formato DD-MM-AAAA
 }
 
 
+Date::Date(unsigned int ano , unsigned int mes , unsigned int dia): ano(ano) , mes(mes) , dia(dia) {}
+
+
 Date::~Date() {}
 
 

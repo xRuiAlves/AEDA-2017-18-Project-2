@@ -24,6 +24,14 @@ public:
 	Date(const std::string &date);
 
 	/**
+	 * @brief Construtor da classe Date.
+	 * @param ano - Ano da Data
+	 * @param mes - Mes da Data
+	 * @param dia - Dia da Data
+	 */
+	Date(unsigned int ano , unsigned int mes , unsigned int dia);
+
+	/**
 	 * @brief Permite obter o dia da data.
 	 * @return Retorna o dia da data.
 	 */
