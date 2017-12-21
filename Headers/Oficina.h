@@ -23,6 +23,7 @@ public:
 	void adicionarVeiculo();
 	void printSimplifiedInfo(std::ostream & os) const;
 	void printCompleteInfo() const;
+	bool representaMarca(const std::string & nomeMarca) const;
 
 	bool operator<(const Oficina & other) const;
 };

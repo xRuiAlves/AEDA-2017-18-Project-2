@@ -44,6 +44,17 @@ void Oficina::printCompleteInfo() const{
 	}
 }
 
+bool Oficina::representaMarca(const std::string & nomeMarca) const{
+	// Verificar se a marca se encontra no vetor de marcas representadas
+	for (unsigned int i=0 ; i<marcasRepresentadas.size() ; i++){
+		if (marcasRepresentadas.at(i) == nomeMarca)	// Representa a marca em questão!
+			return true;
+	}
+
+	// O vetor foi percorrido e a marca nao foi encontrada ; retornar false
+	return false;
+}
+
 
 
 bool Oficina::operator<(const Oficina & other) const{
