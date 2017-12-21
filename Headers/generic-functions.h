@@ -276,5 +276,11 @@ void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil);
  */
 void printInfoMarcasVeiculosMenu();
 
+/**
+ * @brief Lê do utilizador uma data no formato DD-MM-AAAA, lançando um exceção (Erro) caso a data não esteja no formato especificado / erro de input.
+ * @return Retorna a data lida do utilizador, caso tenha havido sucesso na leitura
+ */
+std::string lerDataDeHoje();
+
 
 #endif /* GENERIC_FUNCTIONS_H_ */

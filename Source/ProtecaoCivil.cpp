@@ -1281,3 +1281,20 @@ void ProtecaoCivil::printMarcaMaisAcidentes() const{
 		veiculosAcidentesViacao.begin()->printCompleteInfo();
 }
 
+void ProtecaoCivil::printCondutoresEntreDatas(const Date & data1 , const Date & data2) const{
+	bool haPeloMenosUm = false;
+
+	for (auto it=condutoresAcidentesViacao.begin() ; it!=condutoresAcidentesViacao.end() ; it++){
+		if ((it->getDataUltimoAcidente() >= data1) && (it->getDataUltimoAcidente() <= data2)){	// Esta data enquadra-se nas condicoes de pesquisa!
+			it->printCompleteInfo();
+			std::cout << std::endl;
+			haPeloMenosUm = true;
+		}
+	}
+
+	// Se nao ha nenhum, informar o utilizador
+	if (!haPeloMenosUm)
+		std::cout << "Nao foi encontrado nenhum condutor com as condicoes especificadas" << std::endl;
+
+}
+

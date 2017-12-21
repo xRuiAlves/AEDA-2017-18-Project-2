@@ -980,7 +980,7 @@ void infoCondutores(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,3);
+			opt = getOption(1,4);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -1007,8 +1007,33 @@ void infoCondutores(ProtecaoCivil &protecaoCivil){
 			pause();
 			break;
 		}
+		else if (opt == 3){
+			// Pedir ao utilizador que introduzar uma Data
+			std::string data;
+
+			try{
+				data = lerDataDeHoje();
+			}
+			catch(DataInvalida &e){
+				std::cout << "\n" << e.getInfo() << std::endl << std::endl;
+				pause();
+				break;
+			}
+
+			// Criar um objeto do tipo Date com a data de hoje
+			Date dataDeHoje(data);
+
+			// Criar um objeto com a data de há 5 anos atras
+			Date dataAntiga(dataDeHoje.getDia() , dataDeHoje.getMes() , dataDeHoje.getAno()-5);
+
+			// Imprimir info de todos os condutores envolvidos em acidentes nos ultimos 5 anos
+			protecaoCivil.printCondutoresEntreDatas(dataAntiga , dataDeHoje);
+
+			pause();
+			break;
+		}
 		else
-			break;	// opt = 3, o utilizador quer voltar
+			break;	// opt = 4, o utilizador quer voltar
 	}
 }
 
@@ -1078,7 +1103,8 @@ void printInfoCondutoresMenu(){
 	// Draw the options
 	std::cout << "1. Pesquisar por todos os Condutores" << std::endl;
 	std::cout << "2. Pesquisar por Nome" << std::endl;
-	std::cout << "3. Voltar" << std::endl << std::endl;
+	std::cout << "3. Pesquisar por Condutores envolvidos em Acidentes nos ultimos 5 anos" << std::endl;
+	std::cout << "4. Voltar" << std::endl << std::endl;
 }
 
 void printInfoMarcasVeiculosMenu(){
@@ -1154,4 +1180,61 @@ unsigned int obterIdOficina(){
 	else
 		return ((unsigned int) numId);
 
+}
+
+std::string lerDataDeHoje(){
+	std::string data;
+	std::cout << "\nInsira a data de hoje (Formato DD-MM-AAAA): ";
+	getline(std::cin,data);
+
+	// Verificar se está no formato válido (DD-MM-AAAA)
+	if(data.size() != 10)											// Verificar se a data tem o tamanho correto
+		throw (DataInvalida("Data Invalida!"));
+	else if ((data.at(2) != '-') || (data.at(5) != '-'))			// Verificar se dia, mes e ano estao separados por um traco
+		throw (DataInvalida("Data Invalida!"));
+	else if ((data.at(0) < '0') || (data.at(0) > '9'))				// Verificar se Dx é um digito
+		throw (DataInvalida("Data Invalida!"));
+	else if ((data.at(1) < '0') || (data.at(1) > '9'))				// Verificar se xD é um digito
+		throw (DataInvalida("Data Invalida!"));
+	else if ((data.at(3) < '0') || (data.at(3) > '9'))				// Verificar se Mx é um digito
+		throw (DataInvalida("Data Invalida!"));
+	else if ((data.at(4) < '0') || (data.at(4) > '9'))				// Verificar se xM é um digito
+		throw (DataInvalida("Data Invalida!"));
+	else if ((data.at(6) < '0') || (data.at(6) > '9'))				// Verificar se Axxx é um dígito
+		throw (DataInvalida("Data Invalida!"));
+	else if ((data.at(7) < '0') || (data.at(7) > '9'))				// Verificar se xAxx é um dígito
+		throw (DataInvalida("Data Invalida!"));
+	else if ((data.at(8) < '0') || (data.at(8) > '9'))				// Verificar se xxAx é um dígito
+		throw (DataInvalida("Data Invalida!"));
+	else if ((data.at(9) < '0') || (data.at(9) > '9'))				// Verificar se xxxA é um dígito
+		throw (DataInvalida("Data Invalida!"));
+
+	// Verificar se a data segue os padrões normais de datas
+	int dia = stoi(data.substr(0,2));
+	int mes = stoi(data.substr(3,2));
+	int ano = stoi(data.substr(6,4));
+
+	// Verificar se o mes esta dentro dos limites reais
+	if(mes<0 || mes>12)
+		throw (DataInvalida("Data Invalida!"));
+
+	switch(mes){
+	case 1: case 3: case 5: case 7: case 8: case 10: case 12:		// Meses com 31 dias
+		if ((dia<0) || (dia>31))
+			throw (DataInvalida("Data Incorreta!"));
+		break;
+	case 4: case 6: case 9: case 11:								// Meses com 30 dias
+		if ((dia<0) || (dia>30))
+			throw (DataInvalida("Data Incorreta!"));
+		break;
+	case 2:															// Fevereiro
+		if ((dia<0) || (dia>29))
+			throw (DataInvalida("Data Incorreta!"));
+		else if ((dia == 29) && (ano%4 != 0))	// Se o dia for 29 de Fevereiro e o ano não for bissexto -> erro
+			throw (DataInvalida("Data Incorreta!"));
+		break;
+	}
+
+	// Data valida
+	return data;
 }

@@ -29,7 +29,7 @@ public:
 	 * @param mes - Mes da Data
 	 * @param dia - Dia da Data
 	 */
-	Date(unsigned int ano , unsigned int mes , unsigned int dia);
+	Date(unsigned int dia , unsigned int mes , unsigned int ano);
 
 	/**
 	 * @brief Permite obter o dia da data.
