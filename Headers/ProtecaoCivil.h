@@ -345,6 +345,18 @@ public:
 	 * @param data2 - valor máximo até ao qual são impressas marcas de veículos
 	 */
 	void printVeiculosEntreDatas(const Date & data1 , const Date & data2) const;
+
+	/**
+	 * @brief Permite obter o numero de identificação da oficina com maior número
+	 * @return Retorna o número de identificação da oficina com maior número de identificação
+	 */
+	unsigned int getMaxIdOficinas() const;
+
+	/**
+	 * @brief Adiciona uma oficina à fila de prioridade de oficinas
+	 * @param oficina - Oficina a adiocionar
+	 */
+	void addOficina(const Oficina & oficina);
 };
 
 #endif /* PROTECAOCIVIL_H_ */

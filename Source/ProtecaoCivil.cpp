@@ -1399,3 +1399,25 @@ void ProtecaoCivil::addVeiculo(const std::string & nomeMarcaVeiculo , const Date
 
 	std::cout << "\nNao existe nenhuma oficina que represente a marca do veiculo em questao, pelo que este nao foi encaminhado para nenhuma oficina.\n";
 }
+
+unsigned int ProtecaoCivil::getMaxIdOficinas() const{
+	// Fila de prioridade auxiliar para imprimir todas as oficinas
+	FilaPrioridadeOficinas oficinasToPrint = oficinas;
+
+	unsigned int max = 0;
+
+	// Procura o maior
+	while(!oficinasToPrint.empty()){
+		if (oficinasToPrint.top().getID() > max)
+			max = oficinasToPrint.top().getID();
+
+		oficinasToPrint.pop();
+	}
+
+	// Retorna o maior
+	return max;
+}
+
+void ProtecaoCivil::addOficina(const Oficina & oficina){
+	oficinas.push(oficina);
+}
