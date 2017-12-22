@@ -1201,7 +1201,7 @@ void ProtecaoCivil::retornarAtribuicao(const Atribuicao & atribuicao){
 
 void ProtecaoCivil::printTodasOficinas() const{
 	// Fila de prioridade auxiliar para imprimir todas as oficinas
-	std::priority_queue<Oficina> oficinasToPrint = oficinas;
+	FilaPrioridadeOficinas oficinasToPrint = oficinas;
 
 	while(!oficinasToPrint.empty()){
 		oficinasToPrint.top().printCompleteInfo();
@@ -1218,7 +1218,7 @@ void ProtecaoCivil::printTodosCondutores() const{
 }
 
 void ProtecaoCivil::printTodosVeiculos() const{
-	for (std::set<AcidenteVeiculo>::const_iterator it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
+	for (ArvoreBinariaAcidenteVeiculo::const_iterator it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
 		it->printCompleteInfo();
 		std::cout << std::endl;
 	}
@@ -1226,7 +1226,7 @@ void ProtecaoCivil::printTodosVeiculos() const{
 
 void ProtecaoCivil::printOficina(unsigned int idOficina) const{
 	// Fila de prioridade auxiliar para pesquisar a oficina desejada
-	std::priority_queue<Oficina> oficinasToPrint = oficinas;
+	FilaPrioridadeOficinas oficinasToPrint = oficinas;
 
 	while(!oficinasToPrint.empty()){
 		if (oficinasToPrint.top().getID() == idOficina){	// Encontrada! Imprimir info. e retornar
@@ -1255,7 +1255,7 @@ void ProtecaoCivil::printCondutor(const std::string & nomeCondutor) const{
 }
 
 void ProtecaoCivil::printVeiculo(const std::string & nomeMarca) const{
-	for (std::set<AcidenteVeiculo>::const_iterator it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
+	for (ArvoreBinariaAcidenteVeiculo::const_iterator it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
 		if (it->getMarca().getNomeMarca() == nomeMarca){	// Encontrado! Imprimir info. e retornar
 			it->printCompleteInfo();
 			std::cout << std::endl;
@@ -1300,7 +1300,7 @@ void ProtecaoCivil::printCondutoresEntreDatas(const Date & data1 , const Date & 
 void ProtecaoCivil::printVeiculosEntreDatas(const Date & data1 , const Date & data2) const{
 	bool haPeloMenosUm = false;
 
-	for (std::set<AcidenteVeiculo>::const_iterator it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
+	for (ArvoreBinariaAcidenteVeiculo::const_iterator it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
 		if ((it->getDataUltimoAcidente() >= data1) && (it->getDataUltimoAcidente() <= data2)){	// Esta data enquadra-se nas condicoes de pesquisa!
 			it->printCompleteInfo();
 			std::cout << std::endl;
@@ -1340,9 +1340,9 @@ void ProtecaoCivil::addVeiculo(const std::string & nomeMarcaVeiculo , const Date
 	AcidenteVeiculo av(nomeMarcaVeiculo , 1 , dataAcidente);
 
 	// Verificar se o Registo para Veículos desta Marca já existe
-	std::set<AcidenteVeiculo>::iterator it;
+	ArvoreBinariaAcidenteVeiculo::iterator it;
 	for (it = veiculosAcidentesViacao.begin() ; it != veiculosAcidentesViacao.end() ; it++){
-		if (it->getMarca() == nomeMarcaVeiculo)	// Encontrado! Existe!
+		if ( it->getMarca().getNomeMarca() == nomeMarcaVeiculo)	// Encontrado! Existe!
 			break;
 	}
 
@@ -1360,6 +1360,7 @@ void ProtecaoCivil::addVeiculo(const std::string & nomeMarcaVeiculo , const Date
 		// Atualizar o Registo e re-adiciona-lo, já atualizado
 		registoParaAtualizar.setNumAcidentes( registoParaAtualizar.getNumAcidentes() + 1);
 		registoParaAtualizar.setDataUltimoAcidente(dataAcidente);
+
 		veiculosAcidentesViacao.insert(registoParaAtualizar);
 	}
 

@@ -29,7 +29,7 @@
 /**********************************************************/
 
 
-/**************************** Hash table para Condutores ****************************/
+/**************************   Hash table para Condutores   **************************/
 struct CondutorHash {
 	// Funcao de Dispersão (Using Bob Jenkins' "One-At-A-Time" Hash function for Strings)
 	int operator() (const Condutor& condutor) const
@@ -61,25 +61,37 @@ typedef std::unordered_set<Condutor, CondutorHash, CondutorHash> HashTableCondut
 /************************************************************************************/
 
 
+/**************************   Arvore Binária de Pesquisa para Registos de Acidentes com Veiculos de um certa Marca   **************************/
+typedef std::set<AcidenteVeiculo> ArvoreBinariaAcidenteVeiculo;
+/**********************************************************************************************************************************************/
+
+
+/**************************   Filas de Prioridade para Oficinas de Reparação de Veículos   ****************************/
+typedef std::priority_queue<Oficina> FilaPrioridadeOficinas;
+/**********************************************************************************************************************/
+
+
+
+
 /**
  * Proteção Civil que gere todos os acidentes e aciona os devidos meios de socorro
  */
 class ProtecaoCivil {
 private:
-	std::vector<Posto*> postos;						/**< Vetor de apontadores para todos os posto da Proteção Civil 							*/
-	std::vector<Acidente*> acidentes;				/**< Vetor de apontadores para todos os acidentes em decurso declarados à Proteção Civil 	*/
-	std::vector<Local> locais;						/**< Vetor de todos os locais ao abrigo da proteção da Proteção Civil						*/
-	const std::string ficheiroPostos;				/**< Ficheiro de onde é lida informação sobre todos os posto da Proteção Civil				*/
-	const std::string ficheiroAcidentes;			/**< Ficheiro de onde é lida/escrita informações sobre todos os acidentes 					*/
-	const std::string ficheiroLocais;				/**< Ficheiro de onde é lida informação sobre todos os locais ao abrigo da Proteção Civil	*/
+	std::vector<Posto*> postos;				/**< Vetor de apontadores para todos os posto da Proteção Civil 							*/
+	std::vector<Acidente*> acidentes;		/**< Vetor de apontadores para todos os acidentes em decurso declarados à Proteção Civil 	*/
+	std::vector<Local> locais;				/**< Vetor de todos os locais ao abrigo da proteção da Proteção Civil						*/
+	const std::string ficheiroPostos;		/**< Ficheiro de onde é lida informação sobre todos os posto da Proteção Civil				*/
+	const std::string ficheiroAcidentes;	/**< Ficheiro de onde é lida/escrita informações sobre todos os acidentes 					*/
+	const std::string ficheiroLocais;		/**< Ficheiro de onde é lida informação sobre todos os locais ao abrigo da Proteção Civil	*/
 
 	/****** Membros-Dados para a segunda parte do projeto ******/
-	std::set<AcidenteVeiculo> veiculosAcidentesViacao;	/**< Árvore Binária de pesquisa que contem informação sobre todos os veículos envolvidos em Acidentes de Viação					*/
-	std::priority_queue<Oficina> oficinas;				/**< Fila de Prioridade quem contém todas as oficinas responsáveis pela reparação de veículos envolvidos em Acidentes de Viação	*/
-	HashTableCondutores condutoresAcidentesViacao;		/**< Tabela de Dispersão que contem todos os condutores identificados em Acidentes de Viacao									*/
-	const std::string ficheiroOficinas;					/**< Ficheiro de onde é lida informação sobre oficinas de reparação de Veículos				*/
-	const std::string ficheiroVeiculos;					/**< Ficheiro de onde é lida informação sobre veículos envolvidos em Acidentes de Viação	*/
-	const std::string ficheiroCondutores;				/**< Ficheiro de onde é lida informação sobre condutores envolvidos em Acidentes de Viação	*/
+	ArvoreBinariaAcidenteVeiculo veiculosAcidentesViacao;	/**< Árvore Binária de pesquisa que contem informação sobre todos os veículos envolvidos em Acidentes de Viação					*/
+	FilaPrioridadeOficinas oficinas;						/**< Fila de Prioridade quem contém todas as oficinas responsáveis pela reparação de veículos envolvidos em Acidentes de Viação	*/
+	HashTableCondutores condutoresAcidentesViacao;			/**< Tabela de Dispersão que contem todos os condutores identificados em Acidentes de Viacao									*/
+	const std::string ficheiroOficinas;						/**< Ficheiro de onde é lida informação sobre oficinas de reparação de Veículos				*/
+	const std::string ficheiroVeiculos;						/**< Ficheiro de onde é lida informação sobre veículos envolvidos em Acidentes de Viação	*/
+	const std::string ficheiroCondutores;					/**< Ficheiro de onde é lida informação sobre condutores envolvidos em Acidentes de Viação	*/
 	/***********************************************************/
 
 
