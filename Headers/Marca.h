@@ -13,6 +13,7 @@ public:
 
 	std::string getNomeMarca() const;
 	bool operator==(const Marca &otherMarca) const;
+	bool operator!=(const Marca &otherMarca) const;
 };
 
 

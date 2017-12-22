@@ -13,3 +13,7 @@ std::string Marca::getNomeMarca() const{
 bool Marca::operator==(const Marca &otherMarca) const{
 	return (this->nomeMarca == otherMarca.nomeMarca);
 }
+
+bool Marca::operator!=(const Marca &otherMarca) const{
+	return (this->nomeMarca != otherMarca.nomeMarca);
+}
