@@ -133,10 +133,10 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 				nomeCondutor = lerNomeCondutor();
 
 				// Adicionar o condutor à base de dados
-				protecaoCivil.addCondutor(nomeCondutor , data);
+				protecaoCivil.addCondutor(nomeCondutor , Date(data) );
 
 				// Adicionar o veiculo à base de dados
-				protecaoCivil.addVeiculo( nomeMarca, Date(data) );
+				protecaoCivil.addVeiculo( nomeMarca , Date(data) );
 			}
 
 			acidente = new AcidenteViacao(data,local,protecaoCivil.getMaxNumOcorrencia()+1,tipoEstrada,numFeridos,numVeiculos);
