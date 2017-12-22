@@ -250,6 +250,12 @@ unsigned int obterIdOficina();
 unsigned int obterNumAnos();
 
 /**
+ * @brief Lê do utilizador um Número de Marcas representadas por uma Oficina, lançando uma exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
+ * @return Retorna um número de de Marcas representadas por uma Oficina lido do utilizador, se a leitura for bem sucedida
+ */
+unsigned int obterNumMarcasRepresentadas();
+
+/**
  * @param protecaoCivil - O objeto protecaoCivil com o qual se está a trabalhar.
  * @brief Permite ao utilizador pesquisar sobre as várias oficinas disponíveis
  */

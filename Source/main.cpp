@@ -923,7 +923,7 @@ void infoOficinas(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,4);
+			opt = getOption(1,5);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -966,8 +966,30 @@ void infoOficinas(ProtecaoCivil &protecaoCivil){
 			pause();
 			break;
 		}
+		else if (opt == 4){
+			// Criar uma nova oficina
+			unsigned int numMarcasRepresentadas = obterNumMarcasRepresentadas();
+
+			// Ler as marcas representadas pela nova oficinas
+			std::vector<Marca> marcasRepresentadas;
+			std::string nomeMarca;
+			for (unsigned int i=0 ; i<numMarcasRepresentadas ; i++){
+				std::cout << "Insira o nome da marca numero " << i+1 << ": ";
+				getline(std::cin , nomeMarca);
+				marcasRepresentadas.push_back(Marca(nomeMarca));
+			}
+
+			// Adicionar a nova oficina
+			unsigned int oficinaMaiorId = protecaoCivil.getMaxIdOficinas();
+			protecaoCivil.addOficina(Oficina(oficinaMaiorId + 1 , 0 , marcasRepresentadas));
+
+			std::cout << "\nA nova oficina foi criada com sucesso.\n\n";
+
+			pause();
+			break;
+		}
 		else
-			break;	// opt = 4, o utilizador quer voltar
+			break;	// opt = 5, o utilizador quer voltar
 
 	}
 }
@@ -1134,7 +1156,8 @@ void printInfoOficinasMenu(){
 	std::cout << "1. Pesquisar por todas as Oficinas" << std::endl;
 	std::cout << "2. Pesquisar por Numero de Identificacao" << std::endl;
 	std::cout << "3. Pesquisar pela Oficina com maior disponibilidade" << std::endl;
-	std::cout << "4. Voltar" << std::endl << std::endl;
+	std::cout << "4. Adicionar uma nova Oficina" << std::endl;
+	std::cout << "5. Voltar" << std::endl << std::endl;
 }
 
 void printInfoCondutoresMenu(){
@@ -1241,9 +1264,32 @@ unsigned int obterNumAnos(){
 
 	// Verificar se o numero de anos nao foi absurdo
 	if (numAnos <= 0)
-		throw (InputInvalido("O numero anos nao pode ser nulo nem negativo!"));
+		throw (InputInvalido("O numero de anos nao pode ser nulo nem negativo!"));
 	else
 		return ((unsigned int) numAnos);
+}
+
+unsigned int obterNumMarcasRepresentadas(){
+	int numMarcasRepresentadas;
+	std::cout << "\nInsira o numero de marcas representadas pela nova Oficina: ";
+	std::cin >> numMarcasRepresentadas;
+
+	// Verificar se foi introduzido um numero
+	if(std::cin.fail()){
+		// Limpar as flags de erro e limpar a stream, lançar a exceção
+		std::cin.clear();
+		std::cin.ignore(1000,'\n');
+		throw (InputInvalido("Input Invalido!"));
+	}
+
+	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
+	std::cin.ignore(1000,'\n');
+
+	// Verificar se o numero de marcas representadas pela nova Oficina nao foi absurdo
+	if (numMarcasRepresentadas <= 0)
+		throw (InputInvalido("O numero de marcas representadas pela nova Oficina nao pode ser nulo nem negativo!"));
+	else
+		return ((unsigned int) numMarcasRepresentadas);
 }
 
 std::string lerDataDeHoje(){
