@@ -44,6 +44,10 @@ void AcidenteVeiculo::printCompleteInfo() const{
 
 
 bool AcidenteVeiculo::operator < (const AcidenteVeiculo & other) const{
+	// Veiculos com marcas diferentes sao diferentes, mesmo que tenham numero de acidentes e datas com valores iguais!!!
+	if ((this->numAcidentes == other.numAcidentes) && (this->dataUltimoAcidente == other.dataUltimoAcidente) && (this->marca != other.marca))
+		return true;
+
 	if (this->numAcidentes == other.numAcidentes){
 		return (this->dataUltimoAcidente > other.dataUltimoAcidente);	// Ordem decrescente de numero de acidentes
 	}
