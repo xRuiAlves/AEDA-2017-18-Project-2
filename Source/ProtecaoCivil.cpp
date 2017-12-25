@@ -1421,3 +1421,31 @@ unsigned int ProtecaoCivil::getMaxIdOficinas() const{
 void ProtecaoCivil::addOficina(const Oficina & oficina){
 	oficinas.push(oficina);
 }
+
+void ProtecaoCivil::rmCondutoresEntreDatas(const Date & data1 , const Date & data2){
+	// vetor para guardar os iteradores para os condutores a remover ; procura-los e remove-los num unico ciclo causa problemas de aritmetica de apontadores com a classe unordered_set
+	std::vector< HashTableCondutores::iterator > iteradores;
+
+	// Procurar todos os condutores que tiveram o ultimo acidente entre as datas data1 e data2
+	for (HashTableCondutores::iterator it=condutoresAcidentesViacao.begin() ; it!=condutoresAcidentesViacao.end() ; it++){
+		if ((it->getDataUltimoAcidente() >= data1) && (it->getDataUltimoAcidente() <= data2)){	// Esta data enquadra-se nas condicoes de pesquisa!
+			iteradores.push_back(it);
+		}
+	}
+
+	// Remove-los
+	if (iteradores.empty()){	// Não há qualquer condutor que tenha tido o ultimo acidentes entre as datas data1 e data2
+		std::cout << "\nNao ha registo de nenhum condutor que tenha estado envolvido num acidente no intervalo de tempo especificado.\n" << std::endl;
+	}
+	else{
+
+		for (unsigned int i=0 ; i<iteradores.size() ; i++){
+			condutoresAcidentesViacao.erase(iteradores.at(i));
+		}
+
+		std::cout << "\nForam removidos " << iteradores.size() << " condutores da base de dados.\n" << std::endl;
+	}
+
+}
+
+

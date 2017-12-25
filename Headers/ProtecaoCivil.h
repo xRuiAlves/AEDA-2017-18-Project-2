@@ -357,6 +357,16 @@ public:
 	 * @param oficina - Oficina a adiocionar
 	 */
 	void addOficina(const Oficina & oficina);
+
+	/**
+	 * @brief Remove da  todos os condutores envolvidos em acidentes de viação entre as datas data1 e data2
+	 * @param data1 - valor minimo a partir do qual são impressos condutores
+	 * @param data2 - valor máximo até ao qual são impressos condutores
+	 */
+	void rmCondutoresEntreDatas(const Date & data1 , const Date & data2);
+
 };
+
+
 
 #endif /* PROTECAOCIVIL_H_ */
