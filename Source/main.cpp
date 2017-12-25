@@ -1003,7 +1003,7 @@ void infoCondutores(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,4);
+			opt = getOption(1,5);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -1031,7 +1031,7 @@ void infoCondutores(ProtecaoCivil &protecaoCivil){
 			break;
 		}
 		else if (opt == 3){
-			// Pedir ao utilizador que introduzar uma Data
+			// Pedir ao utilizador que introduzar a Data de hoje
 			std::string data;
 
 			try{
@@ -1056,8 +1056,34 @@ void infoCondutores(ProtecaoCivil &protecaoCivil){
 			pause();
 			break;
 		}
+		else if (opt == 4){
+			// Pedir ao utilizador que introduzar a Data de hoje
+			std::string data;
+
+			try{
+				data = lerDataDeHoje();
+			}
+			catch(DataInvalida &e){
+				std::cout << "\n" << e.getInfo() << std::endl << std::endl;
+				pause();
+				break;
+			}
+
+			// Criar um objeto do tipo Date com a data de hoje
+			Date dataDeHoje(data);
+
+			// Criar um objeto com a data de há 5 anos atras
+			Date dataAntiga(dataDeHoje.getDia() , dataDeHoje.getMes() , dataDeHoje.getAno()-5);
+
+			// Remover todos os condutores envolvidos em acidentes nos ultimos 5 anos
+			std::cout << std::endl;
+			protecaoCivil.rmCondutoresEntreDatas(dataAntiga , dataDeHoje);
+
+			pause();
+			break;
+		}
 		else
-			break;	// opt = 4, o utilizador quer voltar
+			break;	// opt = 5, o utilizador quer voltar
 	}
 }
 
@@ -1168,7 +1194,8 @@ void printInfoCondutoresMenu(){
 	std::cout << "1. Pesquisar por todos os Condutores" << std::endl;
 	std::cout << "2. Pesquisar por Nome" << std::endl;
 	std::cout << "3. Pesquisar por Condutores envolvidos em Acidentes nos ultimos 5 anos" << std::endl;
-	std::cout << "4. Voltar" << std::endl << std::endl;
+	std::cout << "4. Eliminar Condutores envolvidos em Acidentes nos ultimos 5 anos" << std::endl;
+	std::cout << "5. Voltar" << std::endl << std::endl;
 }
 
 void printInfoMarcasVeiculosMenu(){
