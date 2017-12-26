@@ -1031,7 +1031,7 @@ void infoCondutores(ProtecaoCivil &protecaoCivil){
 			break;
 		}
 		else if (opt == 3){
-			// Pedir ao utilizador que introduzar a Data de hoje
+			// Pedir ao utilizador que introduza a Data de hoje
 			std::string data;
 
 			try{
@@ -1057,7 +1057,7 @@ void infoCondutores(ProtecaoCivil &protecaoCivil){
 			break;
 		}
 		else if (opt == 4){
-			// Pedir ao utilizador que introduzar a Data de hoje
+			// Pedir ao utilizador que introduza a Data de hoje
 			std::string data;
 
 			try{
@@ -1096,7 +1096,7 @@ void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,5);
+			opt = getOption(1,6);
 		}
 		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
@@ -1131,7 +1131,7 @@ void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil){
 			break;
 		}
 		else if (opt == 4){
-			// Pedir ao utilizador que introduzar uma Data
+			// Pedir ao utilizador que introduza a Data de hoje
 			std::string data;
 
 			try{
@@ -1169,8 +1169,47 @@ void infoMarcasVeiculos(ProtecaoCivil &protecaoCivil){
 			pause();
 			break;
 		}
+		else if (opt == 5){
+			// Pedir ao utilizador que introduza a Data de hoje
+			std::string data;
+
+			try{
+				data = lerDataDeHoje();
+			}
+			catch(DataInvalida &e){
+				std::cout << "\n" << e.getInfo() << std::endl << std::endl;
+				pause();
+				break;
+			}
+
+			// Pedir ao utilizador para especificar o numero de anos
+			unsigned int numAnos;
+			try{
+				numAnos = obterNumAnos();
+			}
+			catch(InputInvalido &e){
+				std::cout << "\n\n" << e.getInfo();
+				std::cout << std::endl << std::endl;
+				pause();
+				break;
+			}
+
+
+			// Criar um objeto do tipo Date com a data de hoje
+			Date dataDeHoje(data);
+
+			// Criar um objeto com a data de há X anos atras
+			Date dataAntiga(dataDeHoje.getDia() , dataDeHoje.getMes() , dataDeHoje.getAno()-numAnos);
+
+			// Remover registos de todas as marcas de veiculos cujo ultimo acidente ocorreu nos ultimos X anos
+			std::cout << std::endl;
+			protecaoCivil.rmVeiculosEntreDatas(dataAntiga , dataDeHoje);
+
+			pause();
+			break;
+		}
 		else
-			break;	// opt = 5, o utilizador quer voltar
+			break;	// opt = 6, o utilizador quer voltar
 	}
 }
 
@@ -1207,7 +1246,8 @@ void printInfoMarcasVeiculosMenu(){
 	std::cout << "2. Pesquisar por Nome da Marca" << std::endl;
 	std::cout << "3. Pesquisar pela Marca de Veiculos envolvida em maior numero de Acidentes" << std::endl;
 	std::cout << "4. Pesquisar por Marcas Veiculos envolvidas em Acidentes nos ultimos X anos" << std::endl;
-	std::cout << "5. Voltar" << std::endl << std::endl;
+	std::cout << "5. Eliminar registos de Marcas Veiculos envolvidas em Acidentes nos ultimos X anos" << std::endl;
+	std::cout << "6. Voltar" << std::endl << std::endl;
 }
 
 std::string lerFicheiroVeiculos(){
