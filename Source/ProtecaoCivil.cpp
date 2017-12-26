@@ -1448,4 +1448,22 @@ void ProtecaoCivil::rmCondutoresEntreDatas(const Date & data1 , const Date & dat
 
 }
 
+void ProtecaoCivil::rmVeiculosEntreDatas(const Date & data1 , const Date & data2){
+	unsigned int numRegistosRemovidos = 0;
+
+	// Percorrer a árvore e remover todos os registos entre as datas data1 e data2
+	for (ArvoreBinariaAcidenteVeiculo::iterator it=veiculosAcidentesViacao.begin() ; it!=veiculosAcidentesViacao.end() ; it++){
+		if ((it->getDataUltimoAcidente() >= data1) && (it->getDataUltimoAcidente() <= data2)){
+			veiculosAcidentesViacao.erase(it);
+			numRegistosRemovidos ++;
+		}
+	}
+
+	// Comunicar ao utilizador quantos foram removidos
+	if (numRegistosRemovidos == 0)
+		std::cout << "\nNao ha registo de quaisquer marcas de veiculos que tenham estado envolvidas num acidente no intervalo de tempo especificado.\n" << std::endl;
+	else
+		std::cout << "\nForam removidos " << numRegistosRemovidos << " registos de veiculos da base de dados.\n" << std::endl;
+}
+
 

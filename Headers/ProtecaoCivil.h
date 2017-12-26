@@ -359,11 +359,18 @@ public:
 	void addOficina(const Oficina & oficina);
 
 	/**
-	 * @brief Remove da  todos os condutores envolvidos em acidentes de viação entre as datas data1 e data2
-	 * @param data1 - valor minimo a partir do qual são impressos condutores
-	 * @param data2 - valor máximo até ao qual são impressos condutores
+	 * @brief Remove da tabela de dispersão todos os condutores envolvidos em acidentes de viação entre as datas data1 e data2
+	 * @param data1 - valor minimo a partir do qual são removidos condutores
+	 * @param data2 - valor máximo até ao qual são removidos condutores
 	 */
 	void rmCondutoresEntreDatas(const Date & data1 , const Date & data2);
+
+	/**
+	 * @brief Remove da árvore binária registos de todas as marcas cujo ultimo acidente ocorreu entre as datas data1 e data2
+	 * @param data1 - valor minimo a partir do qual são removidos registos
+	 * @param data2 - valor máximo até ao qual são removidos registos
+	 */
+	void rmVeiculosEntreDatas(const Date & data1 , const Date & data2);
 
 };
 
