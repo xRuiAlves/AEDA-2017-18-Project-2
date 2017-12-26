@@ -15,20 +15,19 @@ int main(){
 	///////////////////////////////////////////////////////////////////////
 	// Criar Proteção Civil e verificar se não houve erros na sua abertura
 
-	/******************************************** TODO ALTERAR ISTO ********************************************/
-//	printWelcomeMenu();
-//
-//	std::string ficheiroPostos = lerFicheiroPostos();
-//	std::string ficheiroAcidentes = lerFicheiroAcidentes();
-//	std::string ficheiroLocais = lerFicheiroLocais();
-//	std::string ficheiroOficinas = lerFicheiroOficinas();
-//	std::string ficheiroVeiculos = lerFicheiroVeiculos();
-//	std::string ficheiroCondutores = lerFicheiroCondutores();
-	/******************************************** TODO ALTERAR ISTO ********************************************/
-	/***********************************************************************************************************/
-	ProtecaoCivil protecaoCivil("postos" , "acidentes" , "locais" , "oficinas" , "veiculos" , "condutores");
-	/***********************************************************************************************************/
-	/******************************************** TODO ALTERAR ISTO ********************************************/
+	printWelcomeMenu();
+
+	std::string ficheiroPostos = lerFicheiroPostos();
+	std::string ficheiroAcidentes = lerFicheiroAcidentes();
+	std::string ficheiroLocais = lerFicheiroLocais();
+	std::string ficheiroOficinas = lerFicheiroOficinas();
+	std::string ficheiroVeiculos = lerFicheiroVeiculos();
+	std::string ficheiroCondutores = lerFicheiroCondutores();
+
+
+	ProtecaoCivil protecaoCivil(ficheiroPostos , ficheiroAcidentes , ficheiroLocais , ficheiroOficinas , ficheiroVeiculos , ficheiroCondutores);
+
+
 	try{	// Ler info dos ficheiros e verificar que nao ha erros na sua abertura
 		protecaoCivil.openFiles();
 	}
