@@ -30,10 +30,19 @@
 
 
 /**************************   Hash table para Condutores   **************************/
+/**
+ * Struct auxiliar para dispersão de Condutores na Tabela de Dispersão
+ */
 struct CondutorHash {
-	// Funcao de Dispersão (Using Bob Jenkins' "One-At-A-Time" Hash function for Strings)
+	/**
+	 * @brief Funcao de Dispersao para Condutores
+	 * @param condutor - Condutor para dispersar
+	 * @return valor de retorno da função de dispersão (Bob Jenkins' "One-At-A-Time Hash function)
+	 */
 	int operator() (const Condutor& condutor) const
 	{
+
+		// Funcao de Dispersão (Using Bob Jenkins' "One-At-A-Time" Hash function for Strings)
 		unsigned int hash_result = 0;
 		std::string nome = condutor.getNome();
 
@@ -50,7 +59,12 @@ struct CondutorHash {
 		return hash_result;
 	}
 
-	// Operador de igualdade
+	/**
+	 * @brief Operador de igualdade de condutores (utilizado para encontrar colisões na tabela de dispersão)
+	 * @param condutor1 - operando da comparação
+	 * @param condutor2 - operando da comparação
+	 * @return Retorna true se os condutores tiverem o mesmo nome, false caso contrário
+	 */
 	bool operator() (const Condutor& condutor1, const Condutor& condutor2) const
 	{
 		return (condutor1.getNome() == condutor2.getNome());
@@ -120,6 +134,9 @@ public:
 	 * @param ficheiroPostos - ficheiro de onde são lidos os posto
 	 * @param ficheiroAcidentes - ficheiro de onde são lidos os acidentes
 	 * @param ficheiroLocais - ficheiro de onde são lidos os locais
+	 * @param ficheiroOficinas - ficheiro de onde são lidas as oficinas
+	 * @param ficheiroVeiculos - ficheiro de onde são lidos os registos de marcas de veículos
+	 * @param ficheiroCondutores - ficheiro de onde são lidos os condutores
 	 */
 	ProtecaoCivil(const std::string &ficheiroPostos, const std::string &ficheiroAcidentes, const std::string &ficheiroLocais, const std::string &ficheiroOficinas, const std::string &ficheiroVeiculos, const std::string &ficheiroCondutores);
 
