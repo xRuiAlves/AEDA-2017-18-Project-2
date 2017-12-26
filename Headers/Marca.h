@@ -35,7 +35,7 @@ public:
 	bool operator==(const Marca &otherMarca) const;
 
 	/**
-	 * @brienf Operador de diferença para comparar Marcas.
+	 * @brief Operador de diferença para comparar Marcas.
 	 * @param otherMarca - A marca à qual comparar a Marca em questão.
 	 * @return Retorna true se as marcas tiverem nomes diferentes, falso caso contrário.
 	 */
