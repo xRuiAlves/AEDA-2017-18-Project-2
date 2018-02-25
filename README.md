@@ -1,8 +1,8 @@
-# AEDA-2017-18-Project-2
+# AEDA 2017-2018 Project #2 - Non-Linear Containers
 
 </br>Second project for the "Algorithms and Data Structures" course (2nd year, 1st semester).
-</br></br>
-<b>Project's Final Grade: 20</b>
+</br><b>Course's Repository:</b> https://github.com/xRuiAlves/AEDA-2017-18
+</br><b>Project's Final Grade: 20</b>
 </br></br>
 The project's goal was to use various non-linear containers (more specifically Binary Search Trees, Hash Tables and Priority Queues). 
 </br></br>
